@@ -1,0 +1,15 @@
+.depth { height:226px;
+  background: linear-gradient(to RIGHT, rgba(16, 16, 16, .8), rgba(33, 33, 38, 0.8));
+  margin: 0 0 8px 0; border: 1px solid #333; border-radius: 3px;
+  position:relative;
+}
+.depthtitle { text-anchor: middle; font-size: 14px; fill:#ddd; }
+.axistitle { text-anchor: middle; font-size: 12px; fill:#ddd; }
+.depthquadrant { text-anchor: middle; font-size: 12px; fill:#aaa; pointer-events:none; z-index:-1;}
+.depthtip h3 { margin-top:0px; margin-bottom:10px; }
+.depthtip {
+  position: relative; text-align: center; width: 200px; height: 106px; padding-top: 10px; font: 12px sans-serif;
+  background: #111; border: 0px; border-radius: 4px; pointer-events: none; border: 2px solid #ab8f57;
+  opacity:0; margin-left:0px !important; border-color: #c9d521; vertical-align:top; z-index:11;
+}
+.depthdot { fill: #ddd150; }

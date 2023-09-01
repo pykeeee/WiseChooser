@@ -1,0 +1,14 @@
+.xlarge, .large, .medium, .small, .xsmall { margin:0 auto; }
+.xlarge, .large { position:relative; left:33px; }
+
+@media only screen and (max-width: 1441px) {  
+  .large { left:0; }
+}
+
+.xlarge {width:1280px; }
+.large { width: 1038px; }
+.medium { width: 970px; }
+.small, .xsmall, .tiny  {  margin:0 10px; }
+
+.xlarge::after, .large::after, .medium::after, .small::after, .xsmall::after, .tiny::after { 
+  content: ""; clear: both; display: table;  }

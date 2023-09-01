@@ -1,0 +1,100 @@
+.skill24 {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 0px;
+}
+.skill24 img {
+  width: 24px;
+  height: 24px;
+}
+.skill24 div {
+  text-align: center;
+  color: #ccc;
+  font-size: 10px;
+  line-height: 12px;
+  background-color: black;
+  width: 10px;
+  position: relative;
+  top: -12px;
+  right: -14px;
+  pointer-events: none;
+}
+.skill30 {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  overflow: hidden;
+  font-size: 0px;
+}
+.skill30 img {
+  width: 30px;
+  height: 30px;
+}
+.skill30 div {
+  text-align: center;
+  color: #ccc;
+  font-size: 12px;
+  background-color: black;
+  width: 12px;
+  line-height: 14px;
+  position: relative;
+  top: -16px;
+  right: -16px;
+  pointer-events: none;
+}
+.skill36 {
+  height: 36px;
+  width: 36px;
+  border-radius: 6px;
+  border: 1px solid #666;
+  overflow: hidden;
+  font-size: 0px;
+}
+.skill36 img {
+  width: 36px;
+  height: 36px;
+}
+.skill36 div {
+  text-align: center;
+  color: #ccc;
+  font-size: 14px;
+  background-color: black;
+  width: 16px;
+  pointer-events: none;
+  position: relative;
+  height: 18px;
+  left: 17px;
+  top: -22px;
+}
+.skill52 {
+  height: 52px;
+  width: 52px;
+  border-radius: 6px;
+  border: 1px solid #666;
+  overflow: hidden;
+}
+.skill52 img {
+  width: 52px;
+  height: 52px;
+}
+.skill52 div {
+  text-align: center;
+  color: #ccc;
+  font-size: 18px;
+  width: 18px;
+  line-height: 18px;
+  position: relative;
+  top: -22px;
+  right: -30px;
+  pointer-events: none;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000, 3px 3px 5px #333;
+}
+.loading {
+  margin: 6px 8px;
+}

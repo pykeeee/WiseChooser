@@ -1,0 +1,5 @@
+.wrapper {position:relative; vertical-align:top; display:inline-block; width:140px; height:106px; overflow:hidden; }
+.circle { position: absolute; bottom: 4px; left: 2px; border-radius: 50%; width: 100px; height: 100px; z-index: 12; }
+.border { position: absolute;  left: 0px; margin-right:-100px; z-index: 11; width:146px;  pointer-events: none; }
+.laneborder { position: absolute;  left: 94px; width:46px; height:46px; z-index: 7;  }
+.lane { position: absolute; top:10px; left: 101px; width: 33px; height: 27px; z-index: 18; }

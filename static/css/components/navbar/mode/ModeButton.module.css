@@ -1,0 +1,11 @@
+a .wrapper, .wrapper {
+  color:white; 
+  -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+  text-align:center; width:79px; cursor:pointer; border:1px solid #888 !important; font-size:13px; line-height:17px;
+  vertical-align:top; padding:4px 0; 
+  margin: 0 2px 2px 2px; 
+}
+
+.wrapper > div { font-size:17px; font-weight:bold; line-height:22px; margin:0; }
+a .wrapper:hover, .wrapper:hover { border-bottom: 3px solid #57a5bd !important; background-color: #191b1f; margin-bottom:0; }
+

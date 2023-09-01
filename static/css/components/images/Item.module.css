@@ -1,0 +1,38 @@
+.item18r {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+}
+.item24r {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+}
+.item30r {
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+}
+.item32br {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #666;
+  border-radius: 5px;
+}
+.item48br,
+.item48br1,
+.item48br2 {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #666;
+  border-radius: 8px;
+}
+.item48br1 {
+  border-color: rgb(0, 255, 145);
+}
+.item48br2 {
+  border-color: rgb(223, 223, 82);
+}
+.loading {
+  margin: 6px 8px;
+}

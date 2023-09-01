@@ -1,0 +1,26 @@
+
+.topbar { 
+  position: fixed; background-color: #1b3643; width: 100%; top: 0px;
+  height: 48px; border-bottom: 1px solid black; z-index:88;
+}
+
+.showtoggle { display:grid; grid-template-columns: 40px 1fr; }
+.hidetoggle { display:grid; grid-template-columns: 0px 1fr; }
+
+.logo { margin-top:6px; cursor:pointer; }
+.xlarge, .large, .medium, .small,.xsmall, .tiny { 
+  display:flex; justify-content: space-between;
+}
+
+.lang { margin-top:2px; width:56px; }
+
+.icon { margin-top:2px; }
+.icon a {
+  display:inline-block;
+  text-align:center;
+  font-size:10px;
+  text-decoration:none;
+  color:white;
+}
+
+.icon a:hover { color:#dddd; }

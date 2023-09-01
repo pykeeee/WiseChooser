@@ -1,0 +1,7 @@
+.selected { margin-left:2px; padding:6px 0px 0 6px;  position:relative; width:47px; }
+.selected:hover { background-color: #30353c; }
+
+.options > a { display:inline-block; margin-bottom:4px; padding:2px 0; width:43px; text-align:center; }
+.options > a:hover { background-color: #30353c; }
+.options  { background-color:#272b30;  width:182px; margin-right:-180px;
+  position:relative; top:3px; padding:3px 4px 0px 4px; z-index:10; border:1px solid #111; }

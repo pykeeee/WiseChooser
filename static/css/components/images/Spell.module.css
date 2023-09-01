@@ -1,0 +1,27 @@
+.spell16 {
+  width: 16px;
+  height: 16px;
+}
+.spell19 {
+  width: 19px;
+  height: 19px;
+}
+.spell24 {
+  width: 24px;
+  height: 24px;
+}
+.spell32br {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #666;
+  border-radius: 5px;
+}
+.spell48br {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #666;
+  border-radius: 8px;
+}
+.loading {
+  margin: 6px 8px;
+}

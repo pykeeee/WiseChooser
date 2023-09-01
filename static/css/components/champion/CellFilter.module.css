@@ -1,0 +1,10 @@
+.pick { color: rgba(147, 155, 246, 1); }
+.games { color: #aaa; font-size:9px; }
+.count { background-color:rgba(0,0,0,.8); position:relative; top:-26px; right:-21px; font-size:14px; padding:2px; width:24px; 
+  height:20px; margin-bottom:-20px; border-radius:6px; pointer-events: none; }
+.itemset > div:first-child > div:not(.count) { margin-bottom:4px; }
+.noitems { width:48px; height:48px; border:1px solid #555; border-radius:8px; padding-top:6px; font-weight:bold; margin:0 auto; }
+.itemset {display:inline-block; width:54px; text-align:center; vertical-align:top; }
+.itemset > div > div > div:hover { border-color:#eee !important; cursor:pointer; }
+
+.itemset > img, .itemset > div > img, .itemset > div > div > img { display:block; margin:0 auto 4px auto; }

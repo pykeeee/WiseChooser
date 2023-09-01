@@ -1,0 +1,88 @@
+.champ28b {
+  width: 28px;
+  height: 28px;
+}
+.champ30b {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #000;
+}
+.champ32b {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #666;
+}
+.champ37br {
+  width: 37px;
+  height: 37px;
+  border-radius: 8px;
+  border: 1px solid #010202;
+}
+.champ48br {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #666;
+  border-radius: 8px;
+}
+.champ50b {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #000;
+}
+.champ80 {
+  margin: 4px 6px 4px 0px;
+  border: 2px solid rgb(201, 201, 201);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  float: left;
+}
+.champ100h {
+  width: 100px;
+  height: 130px;
+}
+.champ116 {
+  width: 116px;
+  height: 116px;
+}
+.champ100c,
+.champ140c {
+  position: absolute;
+  border-radius: 50%;
+  border-radius: 50%;
+  z-index: 12;
+}
+.champ100c {
+  bottom: 4px;
+  left: 2px;
+  width: 100px;
+  height: 100px;
+}
+.champ140c {
+  top: 3px;
+  left: 2px;
+  width: 140px;
+  height: 140px;
+}
+.header {
+  display: grid;
+  grid-template-columns: 48px 40px 48px 1fr;
+  border-bottom: 1px solid #ab8f57;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+}
+.type {
+  color: rgb(230, 221, 201);
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 12px;
+  text-align: center;
+}
+.tip,
+.loading {
+  margin: 6px 8px;
+}
+
+.champname {
+  margin-top: -5px;
+}

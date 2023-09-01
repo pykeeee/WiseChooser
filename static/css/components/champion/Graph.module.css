@@ -1,0 +1,157 @@
+.graph {
+  background: linear-gradient(
+    to RIGHT,
+    rgba(16, 16, 16, 0.8),
+    rgba(33, 33, 38, 0.8)
+  );
+  border: 1px solid #333;
+  border-radius: 3px;
+  height: 290px;
+  position: relative;
+  overflow: hidden;
+}
+
+.title_win,
+.title_pick,
+.title_games,
+.title_ban {
+  text-anchor: middle;
+  font-size: 16px;
+  fill: #ddd;
+}
+.title_win {
+  fill: rgba(99, 252, 99, 0.75);
+}
+.title_pick {
+  fill: rgba(147, 155, 246, 1);
+}
+.title_games {
+  fill: #aaa;
+}
+.title_ban {
+  fill: #cc7b7b;
+}
+
+.line_all,
+.line_diamond_plus,
+.line_emerald,
+.line_platinum,
+.line_gold,
+.line_silver,
+.line_bronze,
+.line_iron {
+  fill: none;
+  stroke-width: 1.5;
+}
+.line_all {
+  stroke: #c9d521;
+}
+.line_diamond_plus {
+  stroke: #1266ac;
+}
+.line_emerald {
+  stroke: #2e7846;
+}
+.line_platinum {
+  stroke: #336275;
+}
+.line_gold {
+  stroke: #c5a26c;
+}
+.line_silver {
+  stroke: #d5d5d5;
+}
+.line_bronze {
+  stroke: #9e5b2f;
+}
+.line_iron {
+  stroke: #42647d;
+}
+
+.dot_all,
+.dot_diamond_plus,
+.dot_emerald,
+.dot_platinum,
+.dot_gold,
+.dot_silver,
+.dot_bronze,
+.dot_iron {
+  stroke: #f0f0f0;
+  stroke: rgba(22, 22, 28, 0.8);
+}
+.dot_all {
+  fill: #c9d521;
+}
+.dot_diamond_plus {
+  fill: #1266ac;
+}
+.dot_emerald {
+  fill: #2e7846;
+}
+.dot_platinum {
+  fill: #336275;
+}
+.dot_gold {
+  fill: #c5a26c;
+}
+.dot_silver {
+  fill: #d5d5d5;
+}
+.dot_bronze {
+  fill: #9e5b2f;
+}
+.dot_iron {
+  fill: #42647d;
+}
+
+.tip_all,
+.tip_diamond_plus,
+.tip_emerald,
+.tip_platinum,
+.tip_gold,
+.tip_silver,
+.tip_bronze,
+.tip_iron {
+  position: relative;
+  text-align: center;
+  width: 54px;
+  height: 34px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: #111;
+  border-radius: 4px;
+  pointer-events: none;
+  border: 2px solid #ab8f57;
+  opacity: 0;
+  z-index: 11;
+}
+
+.tip_all {
+  border-color: #c9d521;
+}
+.tip_diamond_plus {
+  border-color: #1266ac;
+}
+.tip_emerald {
+  border-color: #2e7846;
+}
+.tip_platinum {
+  border-color: #336275;
+}
+.tip_gold {
+  border-color: #c5a26c;
+}
+.tip_silver {
+  border-color: #d5d5d5;
+}
+.tip_bronze {
+  border-color: #9e5b2f;
+}
+.tip_iron {
+  border-color: #42647d;
+}
+
+.x,
+.y {
+  color: white;
+}

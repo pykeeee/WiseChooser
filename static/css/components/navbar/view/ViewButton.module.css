@@ -1,0 +1,12 @@
+.button {
+  -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+  text-align:center; width:52px; cursor:pointer;  border:1px solid #888; font-size:13px; line-height:17px;
+  vertical-align:top; padding:4px 0; margin: 0 2px 2px 2px; 
+}
+a .button { border:1px solid #888; }
+
+.button > div { font-size:17px; font-weight:bold; line-height:22px; margin:0; }
+.button:hover {  border-bottom: 3px solid #57a5bd;
+  background-color: #191b1f; margin-bottom:0; }
+
+a .button:hover { border-bottom: 3px solid #57a5bd; }

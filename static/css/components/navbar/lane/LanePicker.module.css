@@ -1,0 +1,14 @@
+.wrapper { padding-top:3px; text-align:center; }
+.picker { display:flex; flex-wrap:nowrap; column-gap: 3px; white-space:nowrap; }
+
+.inner, .inneractive {
+  width: 37px;
+  height: 37px;
+  padding: 4px 0px 0px 0px;
+  background-color: #0e1c23;
+  margin-bottom:3px;
+  border: 1px solid #010202;
+}
+
+.inneractive { border:1px solid #999; }
+.inner:hover { border-color:#57a5bd; }

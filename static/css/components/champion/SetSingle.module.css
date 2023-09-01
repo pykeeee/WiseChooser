@@ -1,0 +1,19 @@
+.toggle, .toggleitemset, .toggleitem2, .togglespell, .togglespells { cursor:pointer; position:relative; top:-74px; left:16px; background-color:#214753;
+  width:50px; text-align:center; font-size:12px; border-radius:6px; padding:2px; -webkit-user-select: none;
+  -o-user-select: none; user-select: none; margin-bottom:-18px; }
+.toggle:hover,.toggleitemset:hover, .toggleitem2:hover, .togglespell:hover, .togglespells:hover { background-color:#57a5bd; }
+
+.toggleitemset, .togglespells { top:-88px; }
+.togglespell { top:-74px; }
+
+.panel { 
+  color: white;
+  background: linear-gradient(to RIGHT, rgba(16, 16, 16, .8), rgba(33, 33, 38, 0.8));
+  margin: 0 0 8px 0;
+  border: 1px solid #333;
+  border-radius: 3px;
+  display:grid;
+  grid-template-columns:78px 1fr;
+  padding-top:3px; 
+  -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+}

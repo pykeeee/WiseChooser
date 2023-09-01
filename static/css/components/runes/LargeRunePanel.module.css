@@ -1,0 +1,11 @@
+.placeholder { margin-bottom:8px; border: 1px solid #333; border-radius: 3px; height:753px; }
+
+.wrapper { background: linear-gradient(to RIGHT, rgba(16, 16, 16, .8), rgba(33, 33, 38, 0.8));
+  margin: 0 0 8px 0; border: 1px solid #333; border-radius: 3px;
+  display:grid; grid-template-columns: 65px 1fr;
+  font-size:12px; line-height:16px; white-space:nowrap; text-align:center;
+}
+.runepanel::-webkit-scrollbar:horizontal { height:8px; padding-bottom:8px; }
+
+.runepanel { display:grid; grid-template-columns: repeat(5,1fr); overflow-x:auto; overflow-y:hidden; }
+.statmod {display:grid; grid-template-columns: repeat(3,1fr); }

@@ -1,0 +1,4 @@
+.runetype { border-right:1px solid #222; border-left:1px solid #222; min-width:130px; }
+.runetype:nth-child(2) { border-left:none; }
+.runetype:nth-child(2n) {background-color:rgba(255,255,255,0.03)}
+.runetype:last-child { border-right:none; }

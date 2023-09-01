@@ -1,0 +1,82 @@
+.wrapper {
+  background: linear-gradient(
+    to RIGHT,
+    rgba(16, 16, 16, 0.8),
+    rgba(33, 33, 38, 0.8)
+  );
+  margin: 0 0 8px 0;
+  border: 1px solid #333;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000, 3px 3px 5px #333;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  line-height: 24px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+  flex-wrap: wrap;
+}
+
+.legend > div {
+  cursor: pointer;
+  min-width: 70px;
+}
+
+.legend > div:hover {
+  background-color: #333;
+}
+
+.all {
+  color: #c9d521;
+}
+.diamond_plus {
+  color: #1266ac;
+}
+.emerald {
+  color: #2e7846;
+}
+.platinum {
+  color: #336275;
+}
+.gold {
+  color: #c5a26c;
+}
+.silver {
+  color: #d5d5d5;
+}
+.bronze {
+  color: #9e5b2f;
+}
+.iron {
+  color: #3f7195;
+}
+.today {
+  color: #d36a0e;
+}
+.smooth {
+  color: #18d30e;
+}
+.max,
+.fortnight,
+.week {
+  color: #6be4ed;
+}
+
+.greyfilter {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.6;
+}

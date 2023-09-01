@@ -1,0 +1,10 @@
+.wrapper {
+  margin-top: 2px;
+  white-space: nowrap !important;
+}
+.wrapper > div {
+  display: inline-block;
+}
+.wrapper div:not(:first-child) {
+  margin-left: 3px;
+}

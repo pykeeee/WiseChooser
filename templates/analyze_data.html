@@ -1,0 +1,409 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<html>
+<head>
+    <script type="text/javascript">
+       function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;//这里如果是一位数则在前面添加一位0
+            }
+            return i;
+         }
+       function setCurrentTime() {
+            var today = new Date();//返回当前日期和时间
+            var yyyy = today.getFullYear();//获取当前年份
+            var MM = today.getMonth() + 1;//因为getMonth()方法获取的是索引值，获取的月份为0-11，所以要＋1
+            var dd = today.getDate();//从 Date 对象返回一个月中的某一天 (1 ~ 31）
+            var hh = today.getHours();//返回 Date 对象的小时 (0 ~ 23)
+            var mm = today.getMinutes();//返回 Date 对象的分钟 (0 ~ 59)
+            MM = checkTime(MM);//调用下面的checkTime函数，设置小于10的时间数字格式，例如5秒显示成05秒
+            dd = checkTime(dd);
+            hh = checkTime(hh);
+            mm = checkTime(mm);
+            var date_var=yyyy + "-" + MM + "-" + dd;
+            var start_time = hh + ":" + mm;
+            var end_time = hh + ":" + mm;
+            var start_date_input1 = document.getElementById("start_date_input1");
+            start_date_input1.value = date_var;
+            var start_date_input2 = document.getElementById("start_date_input2");
+            start_date_input2.value = date_var;
+            var end_date_input1 = document.getElementById("end_date_input1");
+            end_date_input1.value = date_var;
+             var end_date_input2 = document.getElementById("end_date_input2");
+            end_date_input2.value = date_var;
+
+            var start_time_input = document.getElementById("start_time_input1");
+            start_time_input1.value = start_time;
+            var start_time_input2 = document.getElementById("start_time_input2");
+            start_time_input2.value = start_time;
+
+
+            var end_time_input1 = document.getElementById("end_time_input1");
+            end_time_input1.value = end_time;
+
+              var end_time_input2 = document.getElementById("end_time_input2");
+            end_time_input2.value = end_time;
+            }
+
+        function refresh_result(response) {
+            document.getElementById("tables").innerHTML = response
+        }
+
+        function refresh(force) {
+            var tables = document.getElementById('tables');
+            tables.style.display="block";
+            tables.innerHTML = "<h2>...</h2>";
+
+            var loop = 0;
+            var timer = setInterval(function() {
+                var mod = loop % 3;
+                if (mod == 0) {
+                    tables.innerHTML = "<h2>数据加载中.</h2>" ;
+                } else if (mod == 1) {
+                    tables.innerHTML = "<h2>数据加载中..</h2>" ;
+                } else {
+                    tables.innerHTML = "<h2>数据加载中...</h2>" ;
+                }
+                loop += 1;
+            }, 500);
+
+            var xhr = new XMLHttpRequest();
+
+            var enemy_top = document.getElementById("enemy_top").value;
+            var enemy_jungle = document.getElementById("enemy_jungle").value;
+            var enemy_middle = document.getElementById("enemy_middle").value;
+            var enemy_bottom = document.getElementById("enemy_bottom").value;
+            var enemy_support = document.getElementById("enemy_support").value;
+            var team_top = document.getElementById("team_top").value;
+            var team_jungle = document.getElementById("team_jungle").value;
+            var team_middle = document.getElementById("team_middle").value;
+            var team_bottom = document.getElementById("team_bottom").value;
+            var team_support = document.getElementById("team_support").value;
+            var patch = document.getElementById("patch").value;
+            var params = `enemy_top=${enemy_top}&enemy_jungle=${enemy_jungle}&enemy_middle=${enemy_middle}&enemy_bottom=${enemy_bottom}&enemy_support=${enemy_support}&team_top=${team_top}&team_jungle=${team_jungle}&team_middle=${team_middle}&team_bottom=${team_bottom}&team_support=${team_support}&patch=${patch}`
+            var tier = document.getElementById("tier").value;
+            var region = document.getElementById("region").value;
+            var lane = document.getElementById("lane").value;
+            var champion = document.getElementById("champion").value;
+            params=params+`&tier=${tier}&region=${region}&lane=${lane}&champion=${champion}`
+            xhr.open('GET', `do_analyze_data?${params}`);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    refresh_result(this.responseText);
+                } else {
+                    refresh_result(this.status + "<br>" + this.responseText);
+                }
+                clearInterval(timer);
+            }
+            tables.innerHTML="";
+
+
+
+            xhr.send();
+
+        }
+         window.onload = function () {
+         setCurrentTime();
+            //方法内容
+            //refresh(0);
+        }
+
+    </script>
+
+</head>
+<body>
+
+
+<div>
+    <label for="patch">版本号</label>
+    <input type="text" id ='patch'/>
+    <label for="tier">段位</label>
+    <input id="tier" list="tiers">
+    <label for="region">区域</label>
+    <input id="region" list="regions">
+    <label for="lane">所选位置</label>
+    <input id="lane" list="lanes">
+    <label for="champion">所选英雄</label>
+    <input id="champion" list="champions">
+    <br>
+    <label for="enemy_top">enemy_top</label>
+    <input id="enemy_top" list="champions">
+    <br>
+    <label for="enemy_jungle">enemy_jungle</label>
+    <input id="enemy_jungle" list="champions">
+    <br>
+    <label for="enemy_middle">enemy_middle</label>
+    <input id="enemy_middle" list="champions">
+    <br>
+    <label for="enemy_bottom">enemy_bottom</label>
+    <input id="enemy_bottom" list="champions">
+    <br>
+    <label for="enemy_support">enemy_support</label>
+    <input id="enemy_support" list="champions">
+    <br>
+    <label for="team_top">team_top</label>
+    <input id="team_top" list="champions">
+    <br>
+    <label for="team_jungle">team_jungle</label>
+    <input id="team_jungle" list="champions">
+    <br>
+    <label for="team_middle">team_middle</label>
+    <input id="team_middle" list="champions">
+    <br>
+    <label for="team_bottom">team_bottom</label>
+    <input id="team_bottom" list="champions">
+    <br>
+    <label for="team_support">team_support</label>
+    <input id="team_support" list="champions">
+    
+  <br>
+    
+    <p>
+        <button id="run" onclick="refresh(1)">分析</button>
+    <div id="tables" style="margin:0;width:800px;text-align:left;">
+
+    </div>
+
+</div>
+</body>
+<style>
+    {{ stylesheet }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+</html>
+
+<datalist id="champions">
+    <option value="aatrox">
+        <option value="ahri">
+        <option value="akali">
+        <option value="akshan">
+        <option value="alistar">
+        <option value="amumu">
+        <option value="anivia">
+        <option value="annie">
+        <option value="aphelios">
+        <option value="ashe">
+        <option value="aurelionsol">
+        <option value="azir">
+        <option value="bard">
+        <option value="belveth">
+        <option value="blitzcrank">
+        <option value="brand">
+        <option value="braum">
+        <option value="caitlyn">
+        <option value="camille">
+        <option value="cassiopeia">
+        <option value="chogath">
+        <option value="corki">
+        <option value="darius">
+        <option value="diana">
+        <option value="draven">
+        <option value="drmundo">
+        <option value="ekko">
+        <option value="elise">
+        <option value="evelynn">
+        <option value="ezreal">
+        <option value="fiddlesticks">
+        <option value="fiora">
+        <option value="fizz">
+        <option value="galio">
+        <option value="gangplank">
+        <option value="garen">
+        <option value="gnar">
+        <option value="gragas">
+        <option value="graves">
+        <option value="gwen">
+        <option value="hecarim">
+        <option value="heimerdinger">
+        <option value="illaoi">
+        <option value="irelia">
+        <option value="ivern">
+        <option value="janna">
+        <option value="jarvaniv">
+        <option value="jax">
+        <option value="jayce">
+        <option value="jhin">
+        <option value="jinx">
+        <option value="kaisa">
+        <option value="kalista">
+        <option value="karma">
+        <option value="karthus">
+        <option value="kassadin">
+        <option value="katarina">
+        <option value="kayle">
+        <option value="kayn">
+        <option value="kennen">
+        <option value="khazix">
+        <option value="kindred">
+        <option value="kled">
+        <option value="kogmaw">
+        <option value="ksante">
+        <option value="leblanc">
+        <option value="leesin">
+        <option value="leona">
+        <option value="lillia">
+        <option value="lissandra">
+        <option value="lucian">
+        <option value="lulu">
+        <option value="lux">
+        <option value="malphite">
+        <option value="malzahar">
+        <option value="maokai">
+        <option value="masteryi">
+        <option value="milio">
+        <option value="missfortune">
+        <option value="mordekaiser">
+        <option value="morgana">
+        <option value="naafiri">
+        <option value="nami">
+        <option value="nasus">
+        <option value="nautilus">
+        <option value="neeko">
+        <option value="nidalee">
+        <option value="nilah">
+        <option value="nocturne">
+        <option value="nunu">
+        <option value="olaf">
+        <option value="orianna">
+        <option value="ornn">
+        <option value="pantheon">
+        <option value="poppy">
+        <option value="pyke">
+        <option value="qiyana">
+        <option value="quinn">
+        <option value="rakan">
+        <option value="rammus">
+        <option value="reksai">
+        <option value="rell">
+        <option value="renata">
+        <option value="renekton">
+        <option value="rengar">
+        <option value="riven">
+        <option value="rumble">
+        <option value="ryze">
+        <option value="samira">
+        <option value="sejuani">
+        <option value="senna">
+        <option value="seraphine">
+        <option value="sett">
+        <option value="shaco">
+        <option value="shen">
+        <option value="shyvana">
+        <option value="singed">
+        <option value="sion">
+        <option value="sivir">
+        <option value="skarner">
+        <option value="sona">
+        <option value="soraka">
+        <option value="swain">
+        <option value="sylas">
+        <option value="syndra">
+        <option value="tahmkench">
+        <option value="taliyah">
+        <option value="talon">
+        <option value="taric">
+        <option value="teemo">
+        <option value="thresh">
+        <option value="tristana">
+        <option value="trundle">
+        <option value="tryndamere">
+        <option value="twistedfate">
+        <option value="twitch">
+        <option value="udyr">
+        <option value="urgot">
+        <option value="varus">
+        <option value="vayne">
+        <option value="veigar">
+        <option value="velkoz">
+        <option value="vex">
+        <option value="vi">
+        <option value="viego">
+        <option value="viktor">
+        <option value="vladimir">
+        <option value="volibear">
+        <option value="warwick">
+        <option value="wukong">
+        <option value="xayah">
+        <option value="xerath">
+        <option value="xinzhao">
+        <option value="yasuo">
+        <option value="yone">
+        <option value="yorick">
+        <option value="yuumi">
+        <option value="zac">
+        <option value="zed">
+        <option value="zeri">
+        <option value="ziggs">
+        <option value="zilean">
+        <option value="zoe">
+        <option value="zyra">
+</datalist>
+
+<datalist id="tiers">
+    <option value="challenger">challenger</option>
+  <option value="grandmaster">grandmaster</option>
+  <option value="master_plus">master_plus</option>
+  <option value="master">master</option>
+  <option value="diamond_plus">diamond_plus</option>
+  <option value="diamond">diamond</option>
+  <option value="emerald_plus">emerald_plus</option>
+  <option value="emerald">emerald</option>
+  <option value="platinum_plus">platinum_plus</option>
+  <option value="platinum">platinum</option>
+  <option value="gold_plus">gold_plus</option>
+  <option value="gold">gold</option>
+  <option value="silver">silver</option>
+  <option value="bronze">bronze</option>
+  <option value="iron">iron</option>
+  <option value="all">all</option>
+  <option value="unranked">unranked</option>
+  <option value="d2_plus">d2_plus</option>
+</datalist>
+
+<datalist id="lanes">
+    <option value="top">
+    <option value="jungle">
+    <option value="middle">
+    <option value="bottom">
+    <option value="support">
+</datalist>
+
+<datalist id="regions">
+    <option value="all">ALL</option>
+  <option value="br">BRAZIL</option>
+  <option value="eune">EUROPE_NORTH_EAST</option>
+  <option value="euw">EUROPE_WEST</option>
+  <option value="jp">JAPAN</option>
+  <option value="kr">KOREA</option>
+  <option value="lan">LATIN_AMERICA_NORTH</option>
+  <option value="las">LATIN_AMERICA_SOUTH</option>
+  <option value="na">NORTH_AMERICA</option>
+  <option value="oce">OCEANIA</option>
+  <option value="ph">PHILIPPINES</option>
+  <option value="ru">RUSSIA</option>
+  <option value="sg">SINGAPORE</option>
+  <option value="th">THAILAND</option>
+  <option value="tr">TURKEY</option>
+  <option value="tw">TAIWAN</option>
+  <option value="vn">VIETNAM</option>
+</datalist>

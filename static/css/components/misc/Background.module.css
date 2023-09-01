@@ -1,0 +1,10 @@
+.back {
+  background-position: 50% 0px;
+  background-repeat: no-repeat;
+  background-color:black;
+
+  pointer-events: none; top: 48px; left: 0; right: 0; 
+  position:fixed;
+  height:650px;
+  z-index:-1;
+}

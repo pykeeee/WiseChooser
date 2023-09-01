@@ -1,0 +1,4 @@
+.sidebar { margin: 10px 0 20px 0; 
+  background: linear-gradient(90deg,rgba(33,33,38,.2), rgba(24,24,24,.2));
+  border:1px solid rgb(51, 51, 51,.2);
+  height:600px; }

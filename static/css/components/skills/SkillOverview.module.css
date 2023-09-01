@@ -1,0 +1,2 @@
+.big {  display:grid; grid-template-columns: 330px 1fr }
+.small > div:nth-child(2) { margin-top:8px; border-top: 1px solid #444; }

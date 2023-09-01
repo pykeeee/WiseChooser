@@ -1,0 +1,19 @@
+.header { margin:104px 0 24px 0;  }
+.breadcrumbs { margin-bottom:16px; }
+.xlarge, .large, .medium, .small, .xsmall, .tiny { 
+  display:grid; 
+  grid-column-gap: 12px;
+}
+.xlarge, .large, .medium { grid-template-columns: 318px 1fr 350px; }
+.small, .xsmall { grid-template-columns: 318px 1fr;}
+.tiny, .xsmall, .small { margin-top:20px; }
+.tiny { display:block; }
+.tiny > div:first-child { margin: 0 auto 12px auto; width: 318px; }
+.tiny h1, .tiny h2 { text-align:center; }
+
+.vsicons { display:flex; gap:8px; margin-bottom:12px; }
+.vsicons a { color: #fff; }
+.vsicons a:hover { color:#57a5bd; }
+.vs { text-align:center; padding-top:20px; font-size:22px; line-height:22px; }
+.vs svg { width:22px; margin-top:-3px;  }
+.vs a:hover svg { fill:#57a5bd; }

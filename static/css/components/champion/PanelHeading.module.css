@@ -1,0 +1,20 @@
+.spell,.spells,.counter,.synergy, .counterd, .synergyd, .item, .item2, .item3, .mythic, .itemset {
+  padding:2px 4px 0 4px;
+  line-height:16px;
+  position:relative;
+  text-align:center;
+  font-size:12px;
+}
+
+.subtitles { position:absolute; bottom:0; left:0; right:0; }
+.counter_subtitle, .synergy_subtitle, .counterd_subtitle, .synergyd_subtitle { margin-top:4px; margin-bottom:2px; font-size:10px; }
+.item_subtitle { font-size:20px; }
+.itemset .title, .spells .title { margin-top:30px; }
+
+.win { color: rgba(99, 252, 99, 0.75); }
+.time, .delta { color:rgba(246, 255, 54, 0.72); }
+.delta2 { color:rgba(246, 255, 54, 0.92); }
+.pick { color: rgba(147, 155, 246, 1); }
+.games { color: #aaa; font-size:9px; }
+
+.spacer { height:8px; }

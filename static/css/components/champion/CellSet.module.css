@@ -1,0 +1,7 @@
+.wrapper { margin-top: 3px; }
+.wrapper img:hover { border-color:#eee !important; cursor:pointer; }
+.pick { color: #939bf6; margin-top:4px; }
+.games { color: #aaa; font-size:9px !important; margin-top:4px; margin-bottom:3px;}
+.wrapper {display:inline-block; width:54px; text-align:center; vertical-align:top; }
+
+.wrapper > img, .wrapper > div > img { display:block; margin:0 auto 4px auto; }

@@ -1,0 +1,8 @@
+.light { color:white; }
+.dark { color:#111; font-size:10px; }
+.dark > div > div, .light > div > div { font-size:10px; display:inline-block; height:24px; vertical-align:top; text-align:center; margin-bottom:2px; }
+.dark > div > div:first-child, .light > div > div:first-child {margin-right:5px; }
+.light > div > div:not(:first-child) { border:1px solid #30687a; width:15px;  }
+.dark > div > div:not(:first-child) { border:1px solid #111; width:15px; }
+.light .active { background-color: #3a7e93; line-height:22px; }
+.dark .active { background-color:hsla(0,0%,100%,.5); line-height:22px; }

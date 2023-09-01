@@ -1,0 +1,7 @@
+.xlarge4, .xlarge3, .large4, .large3, .medium4, .medium3, .small4, .small3, .xsmall4, .xsmall3 { 
+  margin-bottom:8px;  display:grid; column-gap:10px; row-gap:10px; margin-bottom:8px; width:100%;  }
+.xlarge4, .large4, .medium4 { grid-template-columns: repeat(4,1fr); }
+.xlarge3, .large3, .medium3 { grid-template-columns: repeat(3,1fr); }
+.medium4, .small4, .small3, .xsmall4, .xsmall3 { grid-template-columns: 1fr 1fr; }
+.tiny4, .tiny3 { display:block; margin-bottom:8px; }
+.xsmall4 > div, .xsmall3 > div, .tiny4 > div, .tiny3 > div { width:100%; }
