@@ -1,5 +1,0 @@
-.selected { padding-top:3px; }
-.selected > div { margin-left:0px; margin-right:0px; }
-.options > a { display:inline-block;  margin-bottom:4px; vertical-align:top; }
-.options { background-color:#272b30;  width:118px; margin-right:-118px;
-  position:relative; top:2px; padding:3px 0px 0 2px; z-index:10; border:1px solid #111; margin-left:-5px; }

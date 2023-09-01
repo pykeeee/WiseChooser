@@ -1,3 +1,0 @@
-.data { cursor: grab; overflow-x:scroll; overflow-y:hidden; white-space:nowrap; -ms-overflow-style: none; }
-.data::-webkit-scrollbar:vertical { display: none; }
-.data::-webkit-scrollbar:horizontal { height:8px; }

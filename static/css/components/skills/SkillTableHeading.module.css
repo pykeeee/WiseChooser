@@ -1,5 +1,0 @@
-.heading { 
-  background-color: rgba(13, 13, 19, 0.9); padding:8px 0; line-height:16px; border-bottom:1px solid #444;
-  font-size:12px; display:grid; grid-template-columns: 1fr 60px 60px 8px; text-align:center; }
-.win { color: rgba(99, 252, 99, 0.75); }
-.pick { color: rgba(147, 155, 246, 1); }
