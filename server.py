@@ -19,7 +19,7 @@ def analyze_data():
     return flask.render_template('analyze_data.html'
                                  )
 
-@app.route('/do_analyze_data')
+@app.route('/do_analyze_data', methods=["GET"])
 def do_analyze_data():
     params = request.args
     print(request)
