@@ -82,17 +82,22 @@ def analyze_chosen_data(patch, lane, cid_to_chose, tier, region, enemy_chosen_di
     find_and_fill('team', 'middle', team_middle, team_counters['middle'], result_table)
     find_and_fill('team', 'bottom', team_bottom, team_counters['bottom'], result_table)
     find_and_fill('team', 'support', team_support, team_counters['support'], result_table)
-    total_rate=0;
+    total_rate=0
     believable=0
     for item in result_table:
+
         total_rate+=item[3]
         believable+=item[4]
+        if item[0] == 'enemy':
+            item.append("{:.2f}%".format(100 * item[3] - yourself_win_rate))
+        else:
+            item.append("{:.2f}%".format(100 * item[3] - yourself_win_rate))
         item[3]="{:.2f}%".format(100*item[3])
-        item[5]="{:.2f}%".format(item[5])
+
     total_rate=total_rate/len(result_table)
     believable=believable/len(result_table)
-    result_table.append(['yourself',lane,constant.cid_champions_dic[cid_to_chose],"{:.2f}%".format(100*total_rate),believable,"{:.2f}%".format(yourself_win_rate)])
-    html = pandas.DataFrame(result_table, columns=['阵营','位置', '对阵英雄', '胜率', '可信度', '英雄自身胜率']).to_html()
+    result_table.append(['yourself',lane,constant.cid_champions_dic[cid_to_chose],"{:.2f}%".format(100*total_rate),believable,"{:.2f}%".format(100*total_rate-yourself_win_rate)])
+    html = pandas.DataFrame(result_table, columns=['阵营','位置', '对阵英雄', '胜率', '可信度','差值']).to_html()
     print(html)
     # html= '<!DOCTYPE html><html><head><title>My Table</title></head><body>' + html +'</body></html>'
     return html
@@ -105,13 +110,19 @@ def find_and_fill(side, lane,cid, counter_dic, result_table):
         if counter_dic:##如果是本位置  team_counters_dic将为空
             for item in counter_dic:
                 if item[0] == cid:
-                    result_table.append([side,lane, constant.cid_champions_dic[cid], item[2] / item[1], item[1], item[3]])
+                    result_table.append([side,lane, constant.cid_champions_dic[cid], item[2] / item[1], item[1]])
 
 
 # print(get_counters('13.16', constant.Lane.TOP.value, '166', constant.Tiers.D2_PLUS.value, constant.Region.ALL.value))
 if __name__ == "__main__":
-    enemy_chosen_dic = {}
-    enemy_chosen_dic['top'] = 266
-    team_chosen_dic = {}
-    analyze_chosen_data('13.16', constant.Lane.TOP.value, '166', constant.Tiers.D2_PLUS.value,
-                        constant.Region.ALL.value, enemy_chosen_dic, team_chosen_dic)
+    total=0.0
+    enemy_counters, team_counters, yourself_win_rate = get_counters('13.16', '', '78', constant.Tiers.D2_PLUS.value, constant.Region.ALL.value)
+    total_duiju=0
+    total_win=0
+    total_rate=0.0
+    for item in enemy_counters['top']:
+        total_duiju+=item[1]
+        total_win+=item[2]
+    print(total_duiju)
+    print(total_win)
+    print(total_win/total_duiju)
