@@ -8,51 +8,26 @@
             }
             return i;
          }
-       function setCurrentTime() {
-            var today = new Date();//返回当前日期和时间
-            var yyyy = today.getFullYear();//获取当前年份
-            var MM = today.getMonth() + 1;//因为getMonth()方法获取的是索引值，获取的月份为0-11，所以要＋1
-            var dd = today.getDate();//从 Date 对象返回一个月中的某一天 (1 ~ 31）
-            var hh = today.getHours();//返回 Date 对象的小时 (0 ~ 23)
-            var mm = today.getMinutes();//返回 Date 对象的分钟 (0 ~ 59)
-            MM = checkTime(MM);//调用下面的checkTime函数，设置小于10的时间数字格式，例如5秒显示成05秒
-            dd = checkTime(dd);
-            hh = checkTime(hh);
-            mm = checkTime(mm);
-            var date_var=yyyy + "-" + MM + "-" + dd;
-            var start_time = hh + ":" + mm;
-            var end_time = hh + ":" + mm;
-            var start_date_input1 = document.getElementById("start_date_input1");
-            start_date_input1.value = date_var;
-            var start_date_input2 = document.getElementById("start_date_input2");
-            start_date_input2.value = date_var;
-            var end_date_input1 = document.getElementById("end_date_input1");
-            end_date_input1.value = date_var;
-             var end_date_input2 = document.getElementById("end_date_input2");
-            end_date_input2.value = date_var;
-
-            var start_time_input = document.getElementById("start_time_input1");
-            start_time_input1.value = start_time;
-            var start_time_input2 = document.getElementById("start_time_input2");
-            start_time_input2.value = start_time;
-
-
-            var end_time_input1 = document.getElementById("end_time_input1");
-            end_time_input1.value = end_time;
-
-              var end_time_input2 = document.getElementById("end_time_input2");
-            end_time_input2.value = end_time;
-            }
+       function setBaseValue() {
+            document.getElementById('patch').value = "13.17"
+            document.getElementById('region').value="all"
+        }
 
         function refresh_result(response) {
-            document.getElementById("tables").innerHTML = response
+            var res=JSON.parse(response)
+            document.getElementById("tables").innerHTML = res.html
+            document.getElementById("wr").innerText = "所选英雄自身胜率(仅所选位置):"+res.wr
+            document.getElementById("rank").innerText = "所选英雄在同位置中的排名（胜率和选用率综合排名）:"+res.rank+"/"+res.rank_total
+            document.getElementById("championTier").innerText = "所选英雄T级（胜率和选用率综合排名）:"+res.champion_tier
         }
 
         function refresh(force) {
             var tables = document.getElementById('tables');
             tables.style.display="block";
             tables.innerHTML = "<h2>...</h2>";
-
+            document.getElementById("wr").innerText = ""
+            document.getElementById("rank").innerText = ""
+            document.getElementById("championTier").innerText = ""
             var loop = 0;
             var timer = setInterval(function() {
                 var mod = loop % 3;
@@ -103,7 +78,7 @@
 
         }
          window.onload = function () {
-         setCurrentTime();
+         setBaseValue();
             //方法内容
             //refresh(0);
         }
@@ -161,21 +136,29 @@
     
     <p>
         <button id="run" onclick="refresh(1)">分析</button>
+        <br>
+        <div id="wr"> </div>
+        <br>
+        <div id="rank"> </div>
+        <br>
+        <div id="championTier"> </div>
+        <br>
     <div id="tables" style="margin:0;width:800px;text-align:left;">
 
     </div>
 
 </div>
-<h3> Q&A</h3>
+<h2> Q&A</h2>
 <div>
     <br>
-    Q:为什么选择段位高时，大部分英雄胜率都大于百分之50？
-    <br>
-    A:
-    <br>
-    Q:差值的含义？
-    <br>
-    A:差值是所选英雄对战目标英雄的胜率 和 所选英雄在该段位位置的总胜率。造成差值大于0的原因不只是所选英雄克制目标英雄，也可能是目标英雄本身胜率低。
+    <h3>Q:数据的来源？</h3>
+    <h3>A:本网站数据均从lolalytics.com获取，并没有自己做统计</h3>
+    <h3>Q:为什么选择段位高时，大部分英雄胜率都大于百分之50，而段位低时大部分英雄胜率会低于百分之50？</h3>
+    <h3>A:当一个对局中即出现高段位又出现低段位的时候，高段位更容易获胜</h3>
+    <h3>Q:差值的含义？</h3>
+    <h3>A:差值是所选英雄对战目标英雄的胜率 和 所选英雄在该段位位置的总胜率。造成差值大于0的原因不只是所选英雄克制目标英雄，也可能是目标英雄本身胜率低。</h3>
+    <h3>Q:为什么region中没有china</h3>
+    <h3>A:lolalytics.com的region中就没有china，原因不明</h3>
 </div>
 </body>
 <style>
@@ -427,3 +410,4 @@
     <option value="13.14">
     <option value="13.13">
 </datalist>
+

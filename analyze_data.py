@@ -44,6 +44,9 @@ def get_counters(patch, lane, cid, tier, region):
     enemy_counters['bottom'] = response.get('enemy_bottom')
     enemy_counters['support'] = response.get('enemy_support')
     wr=response.get('header').get('wr')
+    rank=response.get('header').get('rank')
+    rankTotal = response.get('header').get('rankTotal')
+    championTier = response.get('header').get('tier')
     response = requests.get(url(), params=params_generate('team', patch, lane, cid, tier, region))
     response = json.loads(response.content)
     team_counters = {}
@@ -54,11 +57,11 @@ def get_counters(patch, lane, cid, tier, region):
     team_counters['support'] = response.get('team_support', None)
     print(enemy_counters)
     print(team_counters)
-    return enemy_counters, team_counters ,wr
+    return enemy_counters, team_counters ,wr,rank,rankTotal,championTier
 
 
 def analyze_chosen_data(patch, lane, cid_to_chose, tier, region, enemy_chosen_dic, team_chosen_dic):
-    enemy_counters, team_counters, yourself_win_rate= get_counters(patch, lane, cid_to_chose, tier, region)
+    enemy_counters, team_counters, yourself_win_rate,rank,rank_total,champion_tier= get_counters(patch, lane, cid_to_chose, tier, region)
     # 已选位置的英雄cid
     enemy_top = constant.champions_cid_dic.get(enemy_chosen_dic.get('top', None),None)
     enemy_jungle = constant.champions_cid_dic.get(enemy_chosen_dic.get('jungle', None),None)
@@ -99,8 +102,11 @@ def analyze_chosen_data(patch, lane, cid_to_chose, tier, region, enemy_chosen_di
     result_table.append(['yourself',lane,constant.cid_champions_dic[cid_to_chose],"{:.2f}%".format(100*total_rate),believable,"{:.2f}%".format(100*total_rate-yourself_win_rate)])
     html = pandas.DataFrame(result_table, columns=['阵营','位置', '对阵英雄', '胜率', '可信度','差值']).to_html()
     print(html)
+    rt={'html':html , 'wr':"{:.2f}%".format(yourself_win_rate),'rank':rank,'rank_total':rank_total,'champion_tier':champion_tier}
+    rt=json.dumps(rt)
+    print(rt)
     # html= '<!DOCTYPE html><html><head><title>My Table</title></head><body>' + html +'</body></html>'
-    return html
+    return rt
 
 
 def find_and_fill(side, lane,cid, counter_dic, result_table):
@@ -115,14 +121,6 @@ def find_and_fill(side, lane,cid, counter_dic, result_table):
 
 # print(get_counters('13.16', constant.Lane.TOP.value, '166', constant.Tiers.D2_PLUS.value, constant.Region.ALL.value))
 if __name__ == "__main__":
-    total=0.0
-    enemy_counters, team_counters, yourself_win_rate = get_counters('13.16', '', '78', constant.Tiers.D2_PLUS.value, constant.Region.ALL.value)
-    total_duiju=0
-    total_win=0
-    total_rate=0.0
-    for item in enemy_counters['top']:
-        total_duiju+=item[1]
-        total_win+=item[2]
-    print(total_duiju)
-    print(total_win)
-    print(total_win/total_duiju)
+    response=requests.get(url(), params=params_generate('enemy', '13.16', '', '78', constant.Tiers.D2_PLUS.value, constant.Region.ALL.value))
+    response = json.loads(response.content)
+    print(response)
