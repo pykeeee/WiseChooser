@@ -80,7 +80,6 @@ def champion_pool_analyze():
     team_chosen_dic = {'top': team_top, 'jungle': team_jungle, 'middle': team_middle, 'bottom': team_bottom,
                        'support': team_support}
     patch=params.get('patch', None)
-    print(patch)
 
     try:
         lane = params['lane']

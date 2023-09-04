@@ -3,12 +3,6 @@
 
 <head>
     <script type="text/javascript">
-        function checkTime(i) {
-            if (i < 10) {
-                i = "0" + i;//这里如果是一位数则在前面添加一位0
-            }
-            return i;
-        }
         function setBaseValue() {
             document.getElementById('patch').value = "13.17"
             document.getElementById('region').value = "all"
@@ -125,7 +119,7 @@
         <input id="team_support" list="champions">
 
         <br>
-        <h1>列表示例</h1>
+        <h1>你的英雄池</h1>
         <ul id="list">
             <li>
                 <input type="text" placeholder="位置" list="lanes">
@@ -135,7 +129,8 @@
             </li>
             <!-- 在这里添加更多的列表项 -->
         </ul>
-        <button onclick="addNewItem()">你的英雄池</button>
+        <button onclick="addNewItem()">添加英雄</button>
+        <button onclick="champion_pool()">分析英雄池</button>
         <script>
             const list = document.querySelector('#list');
             const items = Array.from(list.querySelectorAll('li'));
@@ -183,6 +178,55 @@
                 // 更新 items 数组
                 const index = items.indexOf(li);
                 items.splice(index, 1);
+            }
+            function champion_pool() {
+                var tables = document.getElementById('tables');
+                tables.style.display = "block";
+                tables.innerHTML = "<h2>...</h2>";
+                document.getElementById("wr").innerText = ""
+                document.getElementById("rank").innerText = ""
+                document.getElementById("championTier").innerText = ""
+
+                var xhr = new XMLHttpRequest();
+
+                var enemy_top = document.getElementById("enemy_top").value;
+                var enemy_jungle = document.getElementById("enemy_jungle").value;
+                var enemy_middle = document.getElementById("enemy_middle").value;
+                var enemy_bottom = document.getElementById("enemy_bottom").value;
+                var enemy_support = document.getElementById("enemy_support").value;
+                var team_top = document.getElementById("team_top").value;
+                var team_jungle = document.getElementById("team_jungle").value;
+                var team_middle = document.getElementById("team_middle").value;
+                var team_bottom = document.getElementById("team_bottom").value;
+                var team_support = document.getElementById("team_support").value;
+                var patch = document.getElementById("patch").value;
+                var params = `enemy_top=${enemy_top}&enemy_jungle=${enemy_jungle}&enemy_middle=${enemy_middle}&enemy_bottom=${enemy_bottom}&enemy_support=${enemy_support}&team_top=${team_top}&team_jungle=${team_jungle}&team_middle=${team_middle}&team_bottom=${team_bottom}&team_support=${team_support}&patch=${patch}`
+                var tier = document.getElementById("tier").value;
+                var region = document.getElementById("region").value;
+                params = params + `&tier=${tier}&region=${region}`
+                const itemParams = new URLSearchParams();
+                items.forEach(item => {
+                    Object.entries(item).forEach(([key, value]) => {
+                        itemParams.append(key, value);
+                    });
+                });
+
+                params = params + `&${itemParams.toString()}`;
+                xhr.open('GET', `champion_pool_analyze?${params}`);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                        refresh_result(this.responseText);
+                    } else {
+                        refresh_result(this.status + "<br>" + this.responseText);
+                    }
+                }
+                tables.innerHTML = "数据加载中。。。";
+
+
+
+                xhr.send();
+
             }
         </script>
         <p>
