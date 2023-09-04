@@ -41,7 +41,12 @@ def do_analyze_data():
     patch=params.get('patch', None)
     print(patch)
     lane = params['lane']
-    cid_to_chose = constant.champions_cid_dic[params['champion']]
+    try:
+        cid_to_chose = constant.champions_cid_dic[params['champion']]
+    except BaseException as e:
+        rt = {'html': '所选英雄错误，请正确输入您想选的英雄（从下拉框选择） \n '+str(e)}
+        print(rt)
+        return rt
     tier = params['tier']
     region = params['region']
     return analyze_chosen_data(patch,lane,cid_to_chose,tier,region, enemy_chosen_dic, team_chosen_dic)

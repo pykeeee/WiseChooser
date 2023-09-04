@@ -28,18 +28,6 @@
             document.getElementById("wr").innerText = ""
             document.getElementById("rank").innerText = ""
             document.getElementById("championTier").innerText = ""
-            var loop = 0;
-            var timer = setInterval(function() {
-                var mod = loop % 3;
-                if (mod == 0) {
-                    tables.innerHTML = "<h2>数据加载中.</h2>" ;
-                } else if (mod == 1) {
-                    tables.innerHTML = "<h2>数据加载中..</h2>" ;
-                } else {
-                    tables.innerHTML = "<h2>数据加载中...</h2>" ;
-                }
-                loop += 1;
-            }, 500);
 
             var xhr = new XMLHttpRequest();
 
@@ -68,9 +56,8 @@
                 } else {
                     refresh_result(this.status + "<br>" + this.responseText);
                 }
-                clearInterval(timer);
             }
-            tables.innerHTML="";
+            tables.innerHTML="数据加载中。。。";
 
 
 
@@ -88,7 +75,7 @@
 </head>
 <body>
 <h1> 欢迎使用WiseChooser</h1>
-<h3> 如果您有任何疑问或者建议，或想参与本网站开发，请加qq群</h3>
+<h3> 如果您有任何疑问或者建议，或想参与本网站开发，请加qq群674484536</h3>
 
 <div>
     <label for="patch">版本号</label>
@@ -156,7 +143,17 @@
     <h3>Q:为什么选择段位高时，大部分英雄胜率都大于百分之50，而段位低时大部分英雄胜率会低于百分之50？</h3>
     <h3>A:当一个对局中即出现高段位又出现低段位的时候，高段位更容易获胜</h3>
     <h3>Q:差值的含义？</h3>
-    <h3>A:差值是所选英雄对战目标英雄的胜率 和 所选英雄在该段位位置的总胜率。造成差值大于0的原因不只是所选英雄克制目标英雄，也可能是目标英雄本身胜率低。</h3>
+    <h3>
+        A:您可以简单地认为，差值越高，您越容易获胜。
+        <br>
+        更深入一些，差值是 ‘您所选英雄对战目标英雄的胜率’ 和 ‘您所选英雄自身胜率’ 的差值。
+        <br>
+        造成差值大于0的原因不一定所选英雄克制目标英雄，也可能是目标敌方(友方)英雄本身胜率低(高)。
+        <br>
+        比如：厄斐琉斯的自身胜率很低，就会导致大部分英雄对战厄斐琉斯的差值将大于0
+        <br>
+        如果您还有疑问，欢迎加群查看文档或像我咨询。
+    </h3>
     <h3>Q:为什么region中没有china</h3>
     <h3>A:lolalytics.com的region中就没有china，原因不明</h3>
 </div>
@@ -188,170 +185,170 @@
 </html>
 
 <datalist id="champions">
-    <option value="aatrox">
-        <option value="ahri">
-        <option value="akali">
-        <option value="akshan">
-        <option value="alistar">
-        <option value="amumu">
-        <option value="anivia">
-        <option value="annie">
-        <option value="aphelios">
-        <option value="ashe">
-        <option value="aurelionsol">
-        <option value="azir">
-        <option value="bard">
-        <option value="belveth">
-        <option value="blitzcrank">
-        <option value="brand">
-        <option value="braum">
-        <option value="caitlyn">
-        <option value="camille">
-        <option value="cassiopeia">
-        <option value="chogath">
-        <option value="corki">
-        <option value="darius">
-        <option value="diana">
-        <option value="draven">
-        <option value="drmundo">
-        <option value="ekko">
-        <option value="elise">
-        <option value="evelynn">
-        <option value="ezreal">
-        <option value="fiddlesticks">
-        <option value="fiora">
-        <option value="fizz">
-        <option value="galio">
-        <option value="gangplank">
-        <option value="garen">
-        <option value="gnar">
-        <option value="gragas">
-        <option value="graves">
-        <option value="gwen">
-        <option value="hecarim">
-        <option value="heimerdinger">
-        <option value="illaoi">
-        <option value="irelia">
-        <option value="ivern">
-        <option value="janna">
-        <option value="jarvaniv">
-        <option value="jax">
-        <option value="jayce">
-        <option value="jhin">
-        <option value="jinx">
-        <option value="kaisa">
-        <option value="kalista">
-        <option value="karma">
-        <option value="karthus">
-        <option value="kassadin">
-        <option value="katarina">
-        <option value="kayle">
-        <option value="kayn">
-        <option value="kennen">
-        <option value="khazix">
-        <option value="kindred">
-        <option value="kled">
-        <option value="kogmaw">
-        <option value="ksante">
-        <option value="leblanc">
-        <option value="leesin">
-        <option value="leona">
-        <option value="lillia">
-        <option value="lissandra">
-        <option value="lucian">
-        <option value="lulu">
-        <option value="lux">
-        <option value="malphite">
-        <option value="malzahar">
-        <option value="maokai">
-        <option value="masteryi">
-        <option value="milio">
-        <option value="missfortune">
-        <option value="mordekaiser">
-        <option value="morgana">
-        <option value="naafiri">
-        <option value="nami">
-        <option value="nasus">
-        <option value="nautilus">
-        <option value="neeko">
-        <option value="nidalee">
-        <option value="nilah">
-        <option value="nocturne">
-        <option value="nunu">
-        <option value="olaf">
-        <option value="orianna">
-        <option value="ornn">
-        <option value="pantheon">
-        <option value="poppy">
-        <option value="pyke">
-        <option value="qiyana">
-        <option value="quinn">
-        <option value="rakan">
-        <option value="rammus">
-        <option value="reksai">
-        <option value="rell">
-        <option value="renata">
-        <option value="renekton">
-        <option value="rengar">
-        <option value="riven">
-        <option value="rumble">
-        <option value="ryze">
-        <option value="samira">
-        <option value="sejuani">
-        <option value="senna">
-        <option value="seraphine">
-        <option value="sett">
-        <option value="shaco">
-        <option value="shen">
-        <option value="shyvana">
-        <option value="singed">
-        <option value="sion">
-        <option value="sivir">
-        <option value="skarner">
-        <option value="sona">
-        <option value="soraka">
-        <option value="swain">
-        <option value="sylas">
-        <option value="syndra">
-        <option value="tahmkench">
-        <option value="taliyah">
-        <option value="talon">
-        <option value="taric">
-        <option value="teemo">
-        <option value="thresh">
-        <option value="tristana">
-        <option value="trundle">
-        <option value="tryndamere">
-        <option value="twistedfate">
-        <option value="twitch">
-        <option value="udyr">
-        <option value="urgot">
-        <option value="varus">
-        <option value="vayne">
-        <option value="veigar">
-        <option value="velkoz">
-        <option value="vex">
-        <option value="vi">
-        <option value="viego">
-        <option value="viktor">
-        <option value="vladimir">
-        <option value="volibear">
-        <option value="warwick">
-        <option value="wukong">
-        <option value="xayah">
-        <option value="xerath">
-        <option value="xinzhao">
-        <option value="yasuo">
-        <option value="yone">
-        <option value="yorick">
-        <option value="yuumi">
-        <option value="zac">
-        <option value="zed">
-        <option value="zeri">
-        <option value="ziggs">
-        <option value="zilean">
-        <option value="zoe">
-        <option value="zyra">
+    <option value="暗裔剑魔 亚托克斯">
+        <option value="九尾妖狐 阿狸 狐狸">
+        <option value="离群之刺 阿卡丽">
+        <option value="影哨 阿克尚">
+        <option value="牛头酋长 阿利斯塔">
+        <option value="殇之木乃伊 阿木木">
+        <option value="冰晶凤凰 艾尼维亚 冰鸟">
+        <option value="黑暗之女 安妮 火女">
+        <option value="残月之肃 厄斐琉斯">
+        <option value="寒冰射手 艾希">
+        <option value="铸星龙王 奥瑞利安索尔">
+        <option value="沙漠皇帝 阿兹尔">
+        <option value="星界游神 巴德">
+        <option value="虚空女皇 卑尔维斯">
+        <option value="蒸汽机器人 布里茨">
+        <option value="复仇焰魂 布兰德 火男">
+        <option value="弗雷尔卓德之心 布隆">
+        <option value="皮城女警 凯特琳">
+        <option value="青钢影 卡密尔">
+        <option value="魔蛇之拥 卡西奥佩娅 蛇女">
+        <option value="虚空恐惧 科加斯 大虫子">
+        <option value="英勇投弹手 库奇 飞机">
+        <option value="诺克萨斯之手 德莱厄斯 诺手">
+        <option value="皎月女神 戴安娜">
+        <option value="荣耀行刑官 德莱文">
+        <option value="祖安狂人 蒙多">
+        <option value="时间刺客 艾克">
+        <option value="蜘蛛女皇 伊利斯">
+        <option value="痛苦之拥 伊芙琳 寡妇">
+        <option value="探险家 伊泽瑞尔">
+        <option value="远古恐惧 费德提克 稻草人">
+        <option value="无双剑姬 菲奥娜">
+        <option value="潮汐海灵 菲兹 小鱼人">
+        <option value="正义巨像 加里奥">
+        <option value="海洋之灾，普朗克 船长">
+        <option value="德玛西亚之力 盖伦">
+        <option value="迷失之牙 纳尔">
+        <option value="酒桶 古拉加斯">
+        <option value="法外狂徒 格雷福斯 男枪">
+        <option value="灵罗娃娃 格温">
+        <option value="战争之影 赫卡里姆 人马">
+        <option value="大发明家 黑默丁格 大头">
+        <option value="海兽祭司 俄洛伊">
+        <option value="刀锋意志 艾瑞莉娅 刀妹">
+        <option value="翠神 艾翁">
+        <option value="风暴之怒 迦娜 风女">
+        <option value="德玛西亚皇子 嘉文四世">
+        <option value="武器大师 贾克斯">
+        <option value="未来守护者 杰斯">
+        <option value="戏命师 烬">
+        <option value="暴走萝莉 金克斯">
+        <option value="虚空之女 卡莎">
+        <option value="复仇之矛 卡莉斯塔 滑板鞋">
+        <option value="天启者 卡尔玛">
+        <option value="死亡颂唱者 卡尔萨斯 死歌">
+        <option value="虚空行者 卡萨丁">
+        <option value="不祥之刃 卡特琳娜">
+        <option value="正义天使 凯尔">
+        <option value="影流之镰 凯隐">
+        <option value="狂暴之心 凯南">
+        <option value="虚空掠夺者 卡兹克">
+        <option value="永猎双子 千珏">
+        <option value="暴怒骑士 克烈">
+        <option value="深渊巨口 克格莫 大嘴">
+        <option value="纳祖芒荣耀 奎桑提 黑叔叔">
+        <option value="诡术妖姬 乐芙兰">
+        <option value="盲僧 李青">
+        <option value="曙光女神 蕾欧娜 日女">
+        <option value="含羞蓓蕾 莉莉娅">
+        <option value="冰霜女巫 丽桑卓 冰女">
+        <option value="圣枪游侠 卢锡安 奥巴马">
+        <option value="仙灵女巫 露露">
+        <option value="光辉女神 拉克丝">
+        <option value="熔岩巨兽 墨菲特 石头人">
+        <option value="虚空先知 马尔扎哈 蚂蚱">
+        <option value="扭曲树精 茂凯 大树">
+        <option value="无极剑圣 易大师">
+        <option value="明烛 米利欧">
+        <option value="赏金猎人 厄运小姐 女枪">
+        <option value="铁铠冥魂 莫德凯撒 铁男">
+        <option value="堕落天使 莫甘娜">
+        <option value="百裂冥犬 纳亚菲利 狗">
+        <option value="唤潮鲛姬 娜美">
+        <option value="沙漠死神 内瑟斯 狗头">
+        <option value="深海泰坦 诺提勒斯">
+        <option value="万花通灵 妮蔻">
+        <option value="狂野女猎手 奈德丽 豹女">
+        <option value="不羁之悦 尼菈">
+        <option value="永恒梦魇 魔腾">
+        <option value="雪原双子 努努">
+        <option value="狂战士 奥拉夫">
+        <option value="发条魔灵 奥利安娜">
+        <option value="山隐之焰 奥恩">
+        <option value="不屈之枪 潘森">
+        <option value="圣锤之毅 波比">
+        <option value="血港鬼影 派克">
+        <option value="元素女皇 奇亚娜">
+        <option value="德玛西亚之翼 奎因">
+        <option value="幻翎 洛">
+        <option value="披甲龙龟 拉莫斯">
+        <option value="虚空遁地兽 雷克赛 挖掘机">
+        <option value="镕铁少女 芮尔">
+        <option value="炼金男爵 烈娜塔">
+        <option value="荒漠屠夫 雷克顿 鳄鱼">
+        <option value="傲之追猎者 雷恩加尔 狮子狗">
+        <option value="放逐之刃 锐雯">
+        <option value="机械公敌 兰博">
+        <option value="符文法师 瑞兹">
+        <option value="沙漠玫瑰 莎米拉">
+        <option value="北地之怒 瑟庄妮 猪妹">
+        <option value="涤魂圣枪 塞纳">
+        <option value="星籁歌姬 萨勒芬妮">
+        <option value="腕豪 瑟提">
+        <option value="恶魔小丑 萨科">
+        <option value="暮光之眼 慎">
+        <option value="龙血武姬 希瓦娜 龙女">
+        <option value="炼金术士 辛吉德">
+        <option value="亡灵战神 塞恩">
+        <option value="战争女神 希维尔">
+        <option value="水晶先锋 斯卡纳 蝎子">
+        <option value="琴瑟仙女 娑娜 琴女">
+        <option value="众星之子 索拉卡 奶妈">
+        <option value="诺克萨斯统领 斯维因 乌鸦">
+        <option value="解脱者 塞拉斯">
+        <option value="暗黑元首 辛德拉">
+        <option value="河流之王 塔姆 蛤蟆">
+        <option value="岩雀 塔利娅">
+        <option value="刀锋之影 泰隆 男刀">
+        <option value="宝石骑士 塔里克">
+        <option value="迅捷斥候 提莫">
+        <option value="魂锁典狱长 锤石">
+        <option value="麦林炮手 崔丝塔娜 小炮">
+        <option value="巨魔之王 特朗德尔">
+        <option value="蛮族之王 泰达米尔">
+        <option value="卡牌大师 崔斯特">
+        <option value="瘟疫之源 图奇 老鼠">
+        <option value="兽灵行者 乌迪尔">
+        <option value="无畏战车 厄加特 螃蟹">
+        <option value="惩戒之箭 维鲁斯">
+        <option value="暗夜猎手 维恩">
+        <option value="邪恶小法师 维嘉">
+        <option value="虚空之眼 维克兹 大眼">
+        <option value="愁云使者 薇古丝">
+        <option value="皮城执法官 蔚">
+        <option value="破败之王 佛耶戈">
+        <option value="机械先驱 维克托">
+        <option value="猩红收割者 弗拉基米尔 吸血鬼">
+        <option value="不灭狂雷 沃利贝尔 狗熊">
+        <option value="祖安怒兽 沃里克 狼人">
+        <option value="齐天大圣 孙悟空 猴子">
+        <option value="逆羽 霞">
+        <option value="远古巫灵 泽拉斯">
+        <option value="德邦总管 赵信">
+        <option value="疾风剑豪 亚索">
+        <option value="封魔剑魂 永恩">
+        <option value="牧魂人 约里克">
+        <option value="魔法猫咪 悠米">
+        <option value="生化魔人 扎克">
+        <option value="影流之主 劫">
+        <option value="祖安花火 泽丽">
+        <option value="爆破鬼才 吉格斯 炸弹人">
+        <option value="时光守护者 基兰">
+        <option value="暮光星灵 佐伊">
+        <option value="荆棘之兴 婕拉">
 </datalist>
 
 <datalist id="tiers">

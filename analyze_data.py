@@ -88,23 +88,28 @@ def analyze_chosen_data(patch, lane, cid_to_chose, tier, region, enemy_chosen_di
     total_rate=0
     believable=0
     for item in result_table:
-
         total_rate+=item[3]
         believable+=item[4]
         if item[0] == 'enemy':
             item.append("{:.2f}%".format(100 * item[3] - yourself_win_rate))
         else:
             item.append("{:.2f}%".format(100 * item[3] - yourself_win_rate))
-        item[3]="{:.2f}%".format(100*item[3])
 
-    total_rate=total_rate/len(result_table)
-    believable=believable/len(result_table)
-    result_table.append(['yourself',lane,constant.cid_champions_dic[cid_to_chose],"{:.2f}%".format(100*total_rate),believable,"{:.2f}%".format(100*total_rate-yourself_win_rate)])
-    html = pandas.DataFrame(result_table, columns=['阵营','位置', '对阵英雄', '胜率', '可信度','差值']).to_html()
-    print(html)
-    rt={'html':html , 'wr':"{:.2f}%".format(yourself_win_rate),'rank':rank,'rank_total':rank_total,'champion_tier':champion_tier}
-    rt=json.dumps(rt)
-    print(rt)
+        item[3]="{:.2f}%".format(100*item[3])
+    try:
+        total_rate=total_rate/len(result_table)
+        believable=believable/len(result_table)
+        result_table.append(['yourself',lane,constant.cid_champions_dic[cid_to_chose],"{:.2f}%".format(100*total_rate),believable,"{:.2f}%".format(100*total_rate-yourself_win_rate)])
+        html = pandas.DataFrame(result_table, columns=['阵营','位置', '对阵英雄', '胜率', '可信度','差值']).to_html()
+        print(html)
+        rt={'html':html , 'wr':"{:.2f}%".format(yourself_win_rate),'rank':rank,'rank_total':rank_total,'champion_tier':champion_tier}
+        rt=json.dumps(rt)
+        print(rt)
+    except BaseException as e:
+        rt = {'html': '英雄名输入有误，无法生成表格,请输入正确的敌方(友方)英雄名 \n '+str(e), 'wr': "{:.2f}%".format(yourself_win_rate), 'rank': rank, 'rank_total': rank_total,
+              'champion_tier': champion_tier}
+        print(rt)
+        return rt
     # html= '<!DOCTYPE html><html><head><title>My Table</title></head><body>' + html +'</body></html>'
     return rt
 
