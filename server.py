@@ -1,8 +1,12 @@
+import os
+
 import flask
 import requests
 from flask import Flask
 from flask import render_template
 from flask import request
+from pandas.io import common
+
 import constant
 from analyze_data import analyze_chosen_data
 
@@ -16,9 +20,14 @@ def hello_world():
 
 @app.route('/analyze_data', methods=["GET"])
 def analyze_data():
-    return flask.render_template('analyze_data.html'
+    return flask.render_template('analyze_data.html',
+    stylesheet = read(os.path.join('static/default.css')),
                                  )
-
+def read(path):
+    if not os.path.exists(path):
+        return None
+    with open(path, "r", encoding='utf-8') as path_open:
+        return path_open.read()
 @app.route('/do_analyze_data', methods=["GET"])
 def do_analyze_data():
     params = request.args
