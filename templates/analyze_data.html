@@ -1,29 +1,30 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <html>
+
 <head>
     <script type="text/javascript">
-       function checkTime(i) {
+        function checkTime(i) {
             if (i < 10) {
                 i = "0" + i;//这里如果是一位数则在前面添加一位0
             }
             return i;
-         }
-       function setBaseValue() {
+        }
+        function setBaseValue() {
             document.getElementById('patch').value = "13.17"
-            document.getElementById('region').value="all"
+            document.getElementById('region').value = "all"
         }
 
         function refresh_result(response) {
-            var res=JSON.parse(response)
+            var res = JSON.parse(response)
             document.getElementById("tables").innerHTML = res.html
-            document.getElementById("wr").innerText = "所选英雄自身胜率(仅所选位置):"+res.wr
-            document.getElementById("rank").innerText = "所选英雄在同位置中的排名（胜率和选用率综合排名）:"+res.rank+"/"+res.rank_total
-            document.getElementById("championTier").innerText = "所选英雄T级（胜率和选用率综合排名）:"+res.champion_tier
+            document.getElementById("wr").innerText = "所选英雄自身胜率(仅所选位置):" + res.wr
+            document.getElementById("rank").innerText = "所选英雄在同位置中的排名（胜率和选用率综合排名）:" + res.rank + "/" + res.rank_total
+            document.getElementById("championTier").innerText = "所选英雄T级（胜率和选用率综合排名）:" + res.champion_tier
         }
 
         function refresh(force) {
             var tables = document.getElementById('tables');
-            tables.style.display="block";
+            tables.style.display = "block";
             tables.innerHTML = "<h2>...</h2>";
             document.getElementById("wr").innerText = ""
             document.getElementById("rank").innerText = ""
@@ -47,329 +48,376 @@
             var region = document.getElementById("region").value;
             var lane = document.getElementById("lane").value;
             var champion = document.getElementById("champion").value;
-            params=params+`&tier=${tier}&region=${region}&lane=${lane}&champion=${champion}`
+            params = params + `&tier=${tier}&region=${region}&lane=${lane}&champion=${champion}`
             xhr.open('GET', `do_analyze_data?${params}`);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     refresh_result(this.responseText);
                 } else {
                     refresh_result(this.status + "<br>" + this.responseText);
                 }
             }
-            tables.innerHTML="数据加载中。。。";
+            tables.innerHTML = "数据加载中。。。";
 
 
 
             xhr.send();
 
         }
-         window.onload = function () {
-         setBaseValue();
+        window.onload = function () {
+            setBaseValue();
             //方法内容
             //refresh(0);
         }
 
+
+
+
     </script>
 
 </head>
-<body>
-<h1> 欢迎使用WiseChooser</h1>
-<h3> 如果您有任何疑问或者建议，或想参与本网站开发，请加qq群674484536</h3>
 
-<div>
-    <label for="patch">版本号</label>
-    <input id ='patch' list="patches"/>
-    <label for="tier">段位</label>
-    <input id="tier" list="tiers">
-    <label for="region">区域</label>
-    <input id="region" list="regions">
-    <label for="lane">所选位置</label>
-    <input id="lane" list="lanes">
-    <label for="champion">所选英雄</label>
-    <input id="champion" list="champions">
-    <br>
-    <label for="enemy_top">enemy_top</label>
-    <input id="enemy_top" list="champions">
-    <br>
-    <label for="enemy_jungle">enemy_jungle</label>
-    <input id="enemy_jungle" list="champions">
-    <br>
-    <label for="enemy_middle">enemy_middle</label>
-    <input id="enemy_middle" list="champions">
-    <br>
-    <label for="enemy_bottom">enemy_bottom</label>
-    <input id="enemy_bottom" list="champions">
-    <br>
-    <label for="enemy_support">enemy_support</label>
-    <input id="enemy_support" list="champions">
-    <br>
-    <label for="team_top">team_top</label>
-    <input id="team_top" list="champions">
-    <br>
-    <label for="team_jungle">team_jungle</label>
-    <input id="team_jungle" list="champions">
-    <br>
-    <label for="team_middle">team_middle</label>
-    <input id="team_middle" list="champions">
-    <br>
-    <label for="team_bottom">team_bottom</label>
-    <input id="team_bottom" list="champions">
-    <br>
-    <label for="team_support">team_support</label>
-    <input id="team_support" list="champions">
-    
-  <br>
-    
-    <p>
-        <button id="run" onclick="refresh(1)">分析</button>
+<body>
+    <h1> 欢迎使用WiseChooser</h1>
+    <h3> 如果您有任何疑问或者建议，或想参与本网站开发，请加qq群674484536</h3>
+
+    <div>
+        <label for="patch">版本号</label>
+        <input id='patch' list="patches" />
+        <label for="tier">段位</label>
+        <input id="tier" list="tiers">
+        <label for="region">区域</label>
+        <input id="region" list="regions">
+        <label for="lane">所选位置</label>
+        <input id="lane" list="lanes">
+        <label for="champion">所选英雄</label>
+        <input id="champion" list="champions">
         <br>
+        <label for="enemy_top">enemy_top</label>
+        <input id="enemy_top" list="champions">
+        <br>
+        <label for="enemy_jungle">enemy_jungle</label>
+        <input id="enemy_jungle" list="champions">
+        <br>
+        <label for="enemy_middle">enemy_middle</label>
+        <input id="enemy_middle" list="champions">
+        <br>
+        <label for="enemy_bottom">enemy_bottom</label>
+        <input id="enemy_bottom" list="champions">
+        <br>
+        <label for="enemy_support">enemy_support</label>
+        <input id="enemy_support" list="champions">
+        <br>
+        <label for="team_top">team_top</label>
+        <input id="team_top" list="champions">
+        <br>
+        <label for="team_jungle">team_jungle</label>
+        <input id="team_jungle" list="champions">
+        <br>
+        <label for="team_middle">team_middle</label>
+        <input id="team_middle" list="champions">
+        <br>
+        <label for="team_bottom">team_bottom</label>
+        <input id="team_bottom" list="champions">
+        <br>
+        <label for="team_support">team_support</label>
+        <input id="team_support" list="champions">
+
+        <br>
+        <h1>列表示例</h1>
+        <ul id="list">
+            <li>
+                <input type="text" placeholder="位置" list="lanes">
+                <input type="text" placeholder="英雄" list="champions">
+                <button onclick="addItem(this)">+</button>
+                <button onclick="removeItem(this)">-</button>
+            </li>
+            <!-- 在这里添加更多的列表项 -->
+        </ul>
+        <button onclick="addNewItem()">你的英雄池</button>
+        <script>
+            const list = document.querySelector('#list');
+            const items = Array.from(list.querySelectorAll('li'));
+
+            const championsList = document.getElementById('champions');
+
+
+            function addNewItem() {
+                // 获取现有的列表项元素
+                const initialItem = document.querySelector('#list li');
+
+                // 手动复制现有列表项的副本
+                const li = initialItem.cloneNode(true);
+
+                // （如果需要）更新某些内容，例如输入框中的默认值或placeholder
+
+                // 将新的列表项添加到文档中的某个位置
+                document.querySelector('#list').appendChild(li);
+
+                // 更新 items 数组
+                items.push(li);
+            }
+
+            function addItem(button) {
+                const initialItem = document.querySelector('#list li');
+
+                // 手动复制现有列表项的副本
+                const li = initialItem.cloneNode(true);
+
+                // （如果需要）更新某些内容，例如输入框中的默认值或placeholder
+
+                // 将新的列表项添加到文档中的某个位置
+                document.querySelector('#list').appendChild(li);
+
+                // 更新 items 数组
+                const index = items.indexOf(li);
+                items.splice(index + 1, 0, newLi);
+            }
+
+            function removeItem(button) {
+                const li = button.parentElement;
+
+                list.removeChild(li);
+
+                // 更新 items 数组
+                const index = items.indexOf(li);
+                items.splice(index, 1);
+            }
+        </script>
+        <p>
+            <button id="run" onclick="refresh(1)">分析</button>
+            <br>
         <div id="wr"> </div>
         <br>
         <div id="rank"> </div>
         <br>
         <div id="championTier"> </div>
         <br>
-    <div id="tables" style="margin:0;width:800px;text-align:left;">
+        <div id="tables" style="margin:0;width:800px;text-align:left;">
+
+        </div>
 
     </div>
-
-</div>
-<h2> Q&A</h2>
-<div>
-    <br>
-    <h3>Q:数据的来源？</h3>
-    <h3>A:本网站数据均从lolalytics.com获取，并没有自己做统计</h3>
-    <h3>Q:为什么选择段位高时，大部分英雄胜率都大于百分之50，而段位低时大部分英雄胜率会低于百分之50？</h3>
-    <h3>A:当一个对局中即出现高段位又出现低段位的时候，高段位更容易获胜</h3>
-    <h3>Q:差值的含义？</h3>
-    <h3>
-        A:您可以简单地认为，差值越高，您越容易获胜。
+    <h2> Q&A</h2>
+    <div>
         <br>
-        更深入一些，差值是 ‘您所选英雄对战目标英雄的胜率’ 和 ‘您所选英雄自身胜率’ 的差值。
-        <br>
-        造成差值大于0的原因不一定所选英雄克制目标英雄，也可能是目标敌方(友方)英雄本身胜率低(高)。
-        <br>
-        比如：厄斐琉斯的自身胜率很低，就会导致大部分英雄对战厄斐琉斯的差值将大于0
-        <br>
-        如果您还有疑问，欢迎加群查看文档或像我咨询。
-    </h3>
-    <h3>Q:为什么region中没有china</h3>
-    <h3>A:lolalytics.com的region中就没有china，原因不明</h3>
-</div>
+        <h3>Q:数据的来源？</h3>
+        <h3>A:本网站数据均从lolalytics.com获取，并没有自己做统计</h3>
+        <h3>Q:为什么选择段位高时，大部分英雄胜率都大于百分之50，而段位低时大部分英雄胜率会低于百分之50？</h3>
+        <h3>A:当一个对局中即出现高段位又出现低段位的时候，高段位更容易获胜</h3>
+        <h3>Q:差值的含义？</h3>
+        <h3>
+            A:您可以简单地认为，差值越高，您越容易获胜。
+            <br>
+            更深入一些，差值是 ‘您所选英雄对战目标英雄的胜率’ 和 ‘您所选英雄自身胜率’ 的差值。
+            <br>
+            造成差值大于0的原因不一定所选英雄克制目标英雄，也可能是目标敌方(友方)英雄本身胜率低(高)。
+            <br>
+            比如：厄斐琉斯的自身胜率很低，就会导致大部分英雄对战厄斐琉斯的差值将大于0
+            <br>
+            如果您还有疑问，欢迎加群查看文档或像我咨询。
+        </h3>
+        <h3>Q:为什么region中没有china</h3>
+        <h3>A:lolalytics.com的region中就没有china，原因不明</h3>
+    </div>
 </body>
 <style>
-    {{ stylesheet }}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    {
+            {
+            stylesheet
+        }
+    }
 </style>
+
 </html>
 
 <datalist id="champions">
     <option value="暗裔剑魔 亚托克斯">
-        <option value="九尾妖狐 阿狸 狐狸">
-        <option value="离群之刺 阿卡丽">
-        <option value="影哨 阿克尚">
-        <option value="牛头酋长 阿利斯塔">
-        <option value="殇之木乃伊 阿木木">
-        <option value="冰晶凤凰 艾尼维亚 冰鸟">
-        <option value="黑暗之女 安妮 火女">
-        <option value="残月之肃 厄斐琉斯">
-        <option value="寒冰射手 艾希">
-        <option value="铸星龙王 奥瑞利安索尔">
-        <option value="沙漠皇帝 阿兹尔">
-        <option value="星界游神 巴德">
-        <option value="虚空女皇 卑尔维斯">
-        <option value="蒸汽机器人 布里茨">
-        <option value="复仇焰魂 布兰德 火男">
-        <option value="弗雷尔卓德之心 布隆">
-        <option value="皮城女警 凯特琳">
-        <option value="青钢影 卡密尔">
-        <option value="魔蛇之拥 卡西奥佩娅 蛇女">
-        <option value="虚空恐惧 科加斯 大虫子">
-        <option value="英勇投弹手 库奇 飞机">
-        <option value="诺克萨斯之手 德莱厄斯 诺手">
-        <option value="皎月女神 戴安娜">
-        <option value="荣耀行刑官 德莱文">
-        <option value="祖安狂人 蒙多">
-        <option value="时间刺客 艾克">
-        <option value="蜘蛛女皇 伊利斯">
-        <option value="痛苦之拥 伊芙琳 寡妇">
-        <option value="探险家 伊泽瑞尔">
-        <option value="远古恐惧 费德提克 稻草人">
-        <option value="无双剑姬 菲奥娜">
-        <option value="潮汐海灵 菲兹 小鱼人">
-        <option value="正义巨像 加里奥">
-        <option value="海洋之灾，普朗克 船长">
-        <option value="德玛西亚之力 盖伦">
-        <option value="迷失之牙 纳尔">
-        <option value="酒桶 古拉加斯">
-        <option value="法外狂徒 格雷福斯 男枪">
-        <option value="灵罗娃娃 格温">
-        <option value="战争之影 赫卡里姆 人马">
-        <option value="大发明家 黑默丁格 大头">
-        <option value="海兽祭司 俄洛伊">
-        <option value="刀锋意志 艾瑞莉娅 刀妹">
-        <option value="翠神 艾翁">
-        <option value="风暴之怒 迦娜 风女">
-        <option value="德玛西亚皇子 嘉文四世">
-        <option value="武器大师 贾克斯">
-        <option value="未来守护者 杰斯">
-        <option value="戏命师 烬">
-        <option value="暴走萝莉 金克斯">
-        <option value="虚空之女 卡莎">
-        <option value="复仇之矛 卡莉斯塔 滑板鞋">
-        <option value="天启者 卡尔玛">
-        <option value="死亡颂唱者 卡尔萨斯 死歌">
-        <option value="虚空行者 卡萨丁">
-        <option value="不祥之刃 卡特琳娜">
-        <option value="正义天使 凯尔">
-        <option value="影流之镰 凯隐">
-        <option value="狂暴之心 凯南">
-        <option value="虚空掠夺者 卡兹克">
-        <option value="永猎双子 千珏">
-        <option value="暴怒骑士 克烈">
-        <option value="深渊巨口 克格莫 大嘴">
-        <option value="纳祖芒荣耀 奎桑提 黑叔叔">
-        <option value="诡术妖姬 乐芙兰">
-        <option value="盲僧 李青">
-        <option value="曙光女神 蕾欧娜 日女">
-        <option value="含羞蓓蕾 莉莉娅">
-        <option value="冰霜女巫 丽桑卓 冰女">
-        <option value="圣枪游侠 卢锡安 奥巴马">
-        <option value="仙灵女巫 露露">
-        <option value="光辉女神 拉克丝">
-        <option value="熔岩巨兽 墨菲特 石头人">
-        <option value="虚空先知 马尔扎哈 蚂蚱">
-        <option value="扭曲树精 茂凯 大树">
-        <option value="无极剑圣 易大师">
-        <option value="明烛 米利欧">
-        <option value="赏金猎人 厄运小姐 女枪">
-        <option value="铁铠冥魂 莫德凯撒 铁男">
-        <option value="堕落天使 莫甘娜">
-        <option value="百裂冥犬 纳亚菲利 狗">
-        <option value="唤潮鲛姬 娜美">
-        <option value="沙漠死神 内瑟斯 狗头">
-        <option value="深海泰坦 诺提勒斯">
-        <option value="万花通灵 妮蔻">
-        <option value="狂野女猎手 奈德丽 豹女">
-        <option value="不羁之悦 尼菈">
-        <option value="永恒梦魇 魔腾">
-        <option value="雪原双子 努努">
-        <option value="狂战士 奥拉夫">
-        <option value="发条魔灵 奥利安娜">
-        <option value="山隐之焰 奥恩">
-        <option value="不屈之枪 潘森">
-        <option value="圣锤之毅 波比">
-        <option value="血港鬼影 派克">
-        <option value="元素女皇 奇亚娜">
-        <option value="德玛西亚之翼 奎因">
-        <option value="幻翎 洛">
-        <option value="披甲龙龟 拉莫斯">
-        <option value="虚空遁地兽 雷克赛 挖掘机">
-        <option value="镕铁少女 芮尔">
-        <option value="炼金男爵 烈娜塔">
-        <option value="荒漠屠夫 雷克顿 鳄鱼">
-        <option value="傲之追猎者 雷恩加尔 狮子狗">
-        <option value="放逐之刃 锐雯">
-        <option value="机械公敌 兰博">
-        <option value="符文法师 瑞兹">
-        <option value="沙漠玫瑰 莎米拉">
-        <option value="北地之怒 瑟庄妮 猪妹">
-        <option value="涤魂圣枪 塞纳">
-        <option value="星籁歌姬 萨勒芬妮">
-        <option value="腕豪 瑟提">
-        <option value="恶魔小丑 萨科">
-        <option value="暮光之眼 慎">
-        <option value="龙血武姬 希瓦娜 龙女">
-        <option value="炼金术士 辛吉德">
-        <option value="亡灵战神 塞恩">
-        <option value="战争女神 希维尔">
-        <option value="水晶先锋 斯卡纳 蝎子">
-        <option value="琴瑟仙女 娑娜 琴女">
-        <option value="众星之子 索拉卡 奶妈">
-        <option value="诺克萨斯统领 斯维因 乌鸦">
-        <option value="解脱者 塞拉斯">
-        <option value="暗黑元首 辛德拉">
-        <option value="河流之王 塔姆 蛤蟆">
-        <option value="岩雀 塔利娅">
-        <option value="刀锋之影 泰隆 男刀">
-        <option value="宝石骑士 塔里克">
-        <option value="迅捷斥候 提莫">
-        <option value="魂锁典狱长 锤石">
-        <option value="麦林炮手 崔丝塔娜 小炮">
-        <option value="巨魔之王 特朗德尔">
-        <option value="蛮族之王 泰达米尔">
-        <option value="卡牌大师 崔斯特">
-        <option value="瘟疫之源 图奇 老鼠">
-        <option value="兽灵行者 乌迪尔">
-        <option value="无畏战车 厄加特 螃蟹">
-        <option value="惩戒之箭 维鲁斯">
-        <option value="暗夜猎手 维恩">
-        <option value="邪恶小法师 维嘉">
-        <option value="虚空之眼 维克兹 大眼">
-        <option value="愁云使者 薇古丝">
-        <option value="皮城执法官 蔚">
-        <option value="破败之王 佛耶戈">
-        <option value="机械先驱 维克托">
-        <option value="猩红收割者 弗拉基米尔 吸血鬼">
-        <option value="不灭狂雷 沃利贝尔 狗熊">
-        <option value="祖安怒兽 沃里克 狼人">
-        <option value="齐天大圣 孙悟空 猴子">
-        <option value="逆羽 霞">
-        <option value="远古巫灵 泽拉斯">
-        <option value="德邦总管 赵信">
-        <option value="疾风剑豪 亚索">
-        <option value="封魔剑魂 永恩">
-        <option value="牧魂人 约里克">
-        <option value="魔法猫咪 悠米">
-        <option value="生化魔人 扎克">
-        <option value="影流之主 劫">
-        <option value="祖安花火 泽丽">
-        <option value="爆破鬼才 吉格斯 炸弹人">
-        <option value="时光守护者 基兰">
-        <option value="暮光星灵 佐伊">
-        <option value="荆棘之兴 婕拉">
+    <option value="九尾妖狐 阿狸 狐狸">
+    <option value="离群之刺 阿卡丽">
+    <option value="影哨 阿克尚">
+    <option value="牛头酋长 阿利斯塔">
+    <option value="殇之木乃伊 阿木木">
+    <option value="冰晶凤凰 艾尼维亚 冰鸟">
+    <option value="黑暗之女 安妮 火女">
+    <option value="残月之肃 厄斐琉斯">
+    <option value="寒冰射手 艾希">
+    <option value="铸星龙王 奥瑞利安索尔">
+    <option value="沙漠皇帝 阿兹尔">
+    <option value="星界游神 巴德">
+    <option value="虚空女皇 卑尔维斯">
+    <option value="蒸汽机器人 布里茨">
+    <option value="复仇焰魂 布兰德 火男">
+    <option value="弗雷尔卓德之心 布隆">
+    <option value="皮城女警 凯特琳">
+    <option value="青钢影 卡密尔">
+    <option value="魔蛇之拥 卡西奥佩娅 蛇女">
+    <option value="虚空恐惧 科加斯 大虫子">
+    <option value="英勇投弹手 库奇 飞机">
+    <option value="诺克萨斯之手 德莱厄斯 诺手">
+    <option value="皎月女神 戴安娜">
+    <option value="荣耀行刑官 德莱文">
+    <option value="祖安狂人 蒙多">
+    <option value="时间刺客 艾克">
+    <option value="蜘蛛女皇 伊利斯">
+    <option value="痛苦之拥 伊芙琳 寡妇">
+    <option value="探险家 伊泽瑞尔">
+    <option value="远古恐惧 费德提克 稻草人">
+    <option value="无双剑姬 菲奥娜">
+    <option value="潮汐海灵 菲兹 小鱼人">
+    <option value="正义巨像 加里奥">
+    <option value="海洋之灾，普朗克 船长">
+    <option value="德玛西亚之力 盖伦">
+    <option value="迷失之牙 纳尔">
+    <option value="酒桶 古拉加斯">
+    <option value="法外狂徒 格雷福斯 男枪">
+    <option value="灵罗娃娃 格温">
+    <option value="战争之影 赫卡里姆 人马">
+    <option value="大发明家 黑默丁格 大头">
+    <option value="海兽祭司 俄洛伊">
+    <option value="刀锋意志 艾瑞莉娅 刀妹">
+    <option value="翠神 艾翁">
+    <option value="风暴之怒 迦娜 风女">
+    <option value="德玛西亚皇子 嘉文四世">
+    <option value="武器大师 贾克斯">
+    <option value="未来守护者 杰斯">
+    <option value="戏命师 烬">
+    <option value="暴走萝莉 金克斯">
+    <option value="虚空之女 卡莎">
+    <option value="复仇之矛 卡莉斯塔 滑板鞋">
+    <option value="天启者 卡尔玛">
+    <option value="死亡颂唱者 卡尔萨斯 死歌">
+    <option value="虚空行者 卡萨丁">
+    <option value="不祥之刃 卡特琳娜">
+    <option value="正义天使 凯尔">
+    <option value="影流之镰 凯隐">
+    <option value="狂暴之心 凯南">
+    <option value="虚空掠夺者 卡兹克">
+    <option value="永猎双子 千珏">
+    <option value="暴怒骑士 克烈">
+    <option value="深渊巨口 克格莫 大嘴">
+    <option value="纳祖芒荣耀 奎桑提 黑叔叔">
+    <option value="诡术妖姬 乐芙兰">
+    <option value="盲僧 李青">
+    <option value="曙光女神 蕾欧娜 日女">
+    <option value="含羞蓓蕾 莉莉娅">
+    <option value="冰霜女巫 丽桑卓 冰女">
+    <option value="圣枪游侠 卢锡安 奥巴马">
+    <option value="仙灵女巫 露露">
+    <option value="光辉女神 拉克丝">
+    <option value="熔岩巨兽 墨菲特 石头人">
+    <option value="虚空先知 马尔扎哈 蚂蚱">
+    <option value="扭曲树精 茂凯 大树">
+    <option value="无极剑圣 易大师">
+    <option value="明烛 米利欧">
+    <option value="赏金猎人 厄运小姐 女枪">
+    <option value="铁铠冥魂 莫德凯撒 铁男">
+    <option value="堕落天使 莫甘娜">
+    <option value="百裂冥犬 纳亚菲利 狗">
+    <option value="唤潮鲛姬 娜美">
+    <option value="沙漠死神 内瑟斯 狗头">
+    <option value="深海泰坦 诺提勒斯">
+    <option value="万花通灵 妮蔻">
+    <option value="狂野女猎手 奈德丽 豹女">
+    <option value="不羁之悦 尼菈">
+    <option value="永恒梦魇 魔腾">
+    <option value="雪原双子 努努">
+    <option value="狂战士 奥拉夫">
+    <option value="发条魔灵 奥利安娜">
+    <option value="山隐之焰 奥恩">
+    <option value="不屈之枪 潘森">
+    <option value="圣锤之毅 波比">
+    <option value="血港鬼影 派克">
+    <option value="元素女皇 奇亚娜">
+    <option value="德玛西亚之翼 奎因">
+    <option value="幻翎 洛">
+    <option value="披甲龙龟 拉莫斯">
+    <option value="虚空遁地兽 雷克赛 挖掘机">
+    <option value="镕铁少女 芮尔">
+    <option value="炼金男爵 烈娜塔">
+    <option value="荒漠屠夫 雷克顿 鳄鱼">
+    <option value="傲之追猎者 雷恩加尔 狮子狗">
+    <option value="放逐之刃 锐雯">
+    <option value="机械公敌 兰博">
+    <option value="符文法师 瑞兹">
+    <option value="沙漠玫瑰 莎米拉">
+    <option value="北地之怒 瑟庄妮 猪妹">
+    <option value="涤魂圣枪 塞纳">
+    <option value="星籁歌姬 萨勒芬妮">
+    <option value="腕豪 瑟提">
+    <option value="恶魔小丑 萨科">
+    <option value="暮光之眼 慎">
+    <option value="龙血武姬 希瓦娜 龙女">
+    <option value="炼金术士 辛吉德">
+    <option value="亡灵战神 塞恩">
+    <option value="战争女神 希维尔">
+    <option value="水晶先锋 斯卡纳 蝎子">
+    <option value="琴瑟仙女 娑娜 琴女">
+    <option value="众星之子 索拉卡 奶妈">
+    <option value="诺克萨斯统领 斯维因 乌鸦">
+    <option value="解脱者 塞拉斯">
+    <option value="暗黑元首 辛德拉">
+    <option value="河流之王 塔姆 蛤蟆">
+    <option value="岩雀 塔利娅">
+    <option value="刀锋之影 泰隆 男刀">
+    <option value="宝石骑士 塔里克">
+    <option value="迅捷斥候 提莫">
+    <option value="魂锁典狱长 锤石">
+    <option value="麦林炮手 崔丝塔娜 小炮">
+    <option value="巨魔之王 特朗德尔">
+    <option value="蛮族之王 泰达米尔">
+    <option value="卡牌大师 崔斯特">
+    <option value="瘟疫之源 图奇 老鼠">
+    <option value="兽灵行者 乌迪尔">
+    <option value="无畏战车 厄加特 螃蟹">
+    <option value="惩戒之箭 维鲁斯">
+    <option value="暗夜猎手 维恩">
+    <option value="邪恶小法师 维嘉">
+    <option value="虚空之眼 维克兹 大眼">
+    <option value="愁云使者 薇古丝">
+    <option value="皮城执法官 蔚">
+    <option value="破败之王 佛耶戈">
+    <option value="机械先驱 维克托">
+    <option value="猩红收割者 弗拉基米尔 吸血鬼">
+    <option value="不灭狂雷 沃利贝尔 狗熊">
+    <option value="祖安怒兽 沃里克 狼人">
+    <option value="齐天大圣 孙悟空 猴子">
+    <option value="逆羽 霞">
+    <option value="远古巫灵 泽拉斯">
+    <option value="德邦总管 赵信">
+    <option value="疾风剑豪 亚索">
+    <option value="封魔剑魂 永恩">
+    <option value="牧魂人 约里克">
+    <option value="魔法猫咪 悠米">
+    <option value="生化魔人 扎克">
+    <option value="影流之主 劫">
+    <option value="祖安花火 泽丽">
+    <option value="爆破鬼才 吉格斯 炸弹人">
+    <option value="时光守护者 基兰">
+    <option value="暮光星灵 佐伊">
+    <option value="荆棘之兴 婕拉">
 </datalist>
 
 <datalist id="tiers">
     <option value="challenger">challenger</option>
-  <option value="grandmaster">grandmaster</option>
-  <option value="master_plus">master_plus</option>
-  <option value="master">master</option>
-  <option value="diamond_plus">diamond_plus</option>
-  <option value="diamond">diamond</option>
-  <option value="emerald_plus">emerald_plus</option>
-  <option value="emerald">emerald</option>
-  <option value="platinum_plus">platinum_plus</option>
-  <option value="platinum">platinum</option>
-  <option value="gold_plus">gold_plus</option>
-  <option value="gold">gold</option>
-  <option value="silver">silver</option>
-  <option value="bronze">bronze</option>
-  <option value="iron">iron</option>
-  <option value="all">all</option>
-  <option value="unranked">unranked</option>
-  <option value="d2_plus">d2_plus</option>
+    <option value="grandmaster">grandmaster</option>
+    <option value="master_plus">master_plus</option>
+    <option value="master">master</option>
+    <option value="diamond_plus">diamond_plus</option>
+    <option value="diamond">diamond</option>
+    <option value="emerald_plus">emerald_plus</option>
+    <option value="emerald">emerald</option>
+    <option value="platinum_plus">platinum_plus</option>
+    <option value="platinum">platinum</option>
+    <option value="gold_plus">gold_plus</option>
+    <option value="gold">gold</option>
+    <option value="silver">silver</option>
+    <option value="bronze">bronze</option>
+    <option value="iron">iron</option>
+    <option value="all">all</option>
+    <option value="unranked">unranked</option>
+    <option value="d2_plus">d2_plus</option>
 </datalist>
 
 <datalist id="lanes">
@@ -382,22 +430,22 @@
 
 <datalist id="regions">
     <option value="all">ALL</option>
-  <option value="br">BRAZIL</option>
-  <option value="eune">EUROPE_NORTH_EAST</option>
-  <option value="euw">EUROPE_WEST</option>
-  <option value="jp">JAPAN</option>
-  <option value="kr">KOREA</option>
-  <option value="lan">LATIN_AMERICA_NORTH</option>
-  <option value="las">LATIN_AMERICA_SOUTH</option>
-  <option value="na">NORTH_AMERICA</option>
-  <option value="oce">OCEANIA</option>
-  <option value="ph">PHILIPPINES</option>
-  <option value="ru">RUSSIA</option>
-  <option value="sg">SINGAPORE</option>
-  <option value="th">THAILAND</option>
-  <option value="tr">TURKEY</option>
-  <option value="tw">TAIWAN</option>
-  <option value="vn">VIETNAM</option>
+    <option value="br">BRAZIL</option>
+    <option value="eune">EUROPE_NORTH_EAST</option>
+    <option value="euw">EUROPE_WEST</option>
+    <option value="jp">JAPAN</option>
+    <option value="kr">KOREA</option>
+    <option value="lan">LATIN_AMERICA_NORTH</option>
+    <option value="las">LATIN_AMERICA_SOUTH</option>
+    <option value="na">NORTH_AMERICA</option>
+    <option value="oce">OCEANIA</option>
+    <option value="ph">PHILIPPINES</option>
+    <option value="ru">RUSSIA</option>
+    <option value="sg">SINGAPORE</option>
+    <option value="th">THAILAND</option>
+    <option value="tr">TURKEY</option>
+    <option value="tw">TAIWAN</option>
+    <option value="vn">VIETNAM</option>
 </datalist>
 
 <datalist id="patches">
@@ -407,4 +455,3 @@
     <option value="13.14">
     <option value="13.13">
 </datalist>
-

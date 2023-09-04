@@ -63,6 +63,7 @@ def get_counters(patch, lane, cid, tier, region):
 def analyze_chosen_data(patch, lane, cid_to_chose, tier, region, enemy_chosen_dic, team_chosen_dic):
     enemy_counters, team_counters, yourself_win_rate,rank,rank_total,champion_tier= get_counters(patch, lane, cid_to_chose, tier, region)
     # 已选位置的英雄cid
+    print(enemy_chosen_dic)
     enemy_top = constant.champions_cid_dic.get(enemy_chosen_dic.get('top', None),None)
     enemy_jungle = constant.champions_cid_dic.get(enemy_chosen_dic.get('jungle', None),None)
     enemy_middle = constant.champions_cid_dic.get(enemy_chosen_dic.get('middle', None),None)
@@ -100,7 +101,7 @@ def analyze_chosen_data(patch, lane, cid_to_chose, tier, region, enemy_chosen_di
         total_rate=total_rate/len(result_table)
         believable=believable/len(result_table)
         result_table.append(['yourself',lane,constant.cid_champions_dic[cid_to_chose],"{:.2f}%".format(100*total_rate),believable,"{:.2f}%".format(100*total_rate-yourself_win_rate)])
-        html = pandas.DataFrame(result_table, columns=['阵营','位置', '对阵英雄', '胜率', '可信度','差值']).to_html()
+        html = pandas.DataFrame(result_table, columns=['阵营','位置', '对阵英雄', '你的胜率', '可信度','差值']).to_html()
         print(html)
         rt={'html':html , 'wr':"{:.2f}%".format(yourself_win_rate),'rank':rank,'rank_total':rank_total,'champion_tier':champion_tier}
         rt=json.dumps(rt)
