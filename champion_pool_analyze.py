@@ -22,7 +22,7 @@ def champion_pool_analyze_html(patch, champion_pool, tier, region, enemy_chosen_
     for future in as_completed(futures):
         pass
     print('result_list')
-    result_list = sorted(result_list, key=lambda x: x[5], reverse=True)
+    result_list = sorted(result_list, key=lambda x: float(x[5][:-1]), reverse=True)
     print(result_list)
     html = pandas.DataFrame(result_list, columns=['位置', '英雄', '本局胜率', '英雄胜率', '可信度', '差值']).to_html()
     return html
