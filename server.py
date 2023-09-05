@@ -2,13 +2,14 @@ import os
 
 import flask
 import requests
-from flask import Flask
+from flask import Flask, json
 from flask import render_template
 from flask import request
 from pandas.io import common
 
 import constant
 from analyze_data import analyze_chosen_data
+from champion_pool_analyze import champion_pool_analyze_html
 
 app = Flask("WiseChooser")
 port=1268
@@ -60,9 +61,10 @@ def do_analyze_data():
     region = params['region']
     return analyze_chosen_data(patch,lane,cid_to_chose,tier,region, enemy_chosen_dic, team_chosen_dic)
 
-@app.route('/champion_pool_analyze', methods=["GET"])
+@app.route('/champion_pool_analyze', methods=["POST"])
 def champion_pool_analyze():
-    params = request.args
+    print(request.data)
+    params = json.loads(request.data)
     print(request)
     print(params)
     enemy_top = params.get('enemy_top', None)
@@ -80,17 +82,18 @@ def champion_pool_analyze():
     team_chosen_dic = {'top': team_top, 'jungle': team_jungle, 'middle': team_middle, 'bottom': team_bottom,
                        'support': team_support}
     patch=params.get('patch', None)
-
+    champion_pool = []
     try:
-        lane = params['lane']
-        cid_to_chose = constant.champions_cid_dic[params['champion']]
+        champion_pool=params.get('champion_pool')
+        for item in champion_pool:
+            item['champion']=constant.champions_cid_dic[item.get('champion')]
     except BaseException as e:
         rt = {'html': '所选英雄错误，请正确输入您想选的英雄（从下拉框选择） \n '+str(e)}
         print(rt)
         return rt
     tier = params['tier']
     region = params['region']
-    return analyze_chosen_data(patch,lane,cid_to_chose,tier,region, enemy_chosen_dic, team_chosen_dic)
+    return champion_pool_analyze_html(patch, champion_pool, tier, region, enemy_chosen_dic, team_chosen_dic)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=port,debug=True)

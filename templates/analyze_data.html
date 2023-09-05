@@ -10,16 +10,16 @@
 
         function refresh_result(response) {
             var res = JSON.parse(response)
-            document.getElementById("tables").innerHTML = res.html
+            document.getElementById("tables1").innerHTML = res.html
             document.getElementById("wr").innerText = "所选英雄自身胜率(仅所选位置):" + res.wr
             document.getElementById("rank").innerText = "所选英雄在同位置中的排名（胜率和选用率综合排名）:" + res.rank + "/" + res.rank_total
             document.getElementById("championTier").innerText = "所选英雄T级（胜率和选用率综合排名）:" + res.champion_tier
         }
 
         function refresh(force) {
-            var tables = document.getElementById('tables');
-            tables.style.display = "block";
-            tables.innerHTML = "<h2>...</h2>";
+            var tables1 = document.getElementById('tables1');
+            tables1.style.display = "block";
+            tables1.innerHTML = "<h2>...</h2>";
             document.getElementById("wr").innerText = ""
             document.getElementById("rank").innerText = ""
             document.getElementById("championTier").innerText = ""
@@ -52,7 +52,7 @@
                     refresh_result(this.status + "<br>" + this.responseText);
                 }
             }
-            tables.innerHTML = "数据加载中。。。";
+            tables1.innerHTML = "数据加载中。。。";
 
 
 
@@ -122,8 +122,8 @@
         <h1>你的英雄池</h1>
         <ul id="list">
             <li>
-                <input type="text" placeholder="位置" list="lanes">
-                <input type="text" placeholder="英雄" list="champions">
+                <input class="lane" type="text" placeholder="位置" list="lanes">
+                <input class="champion" type="text" placeholder="英雄" list="champions">
                 <button onclick="addItem(this)">+</button>
                 <button onclick="removeItem(this)">-</button>
             </li>
@@ -180,54 +180,58 @@
                 items.splice(index, 1);
             }
             function champion_pool() {
-                var tables = document.getElementById('tables');
-                tables.style.display = "block";
-                tables.innerHTML = "<h2>...</h2>";
+                var tables2 = document.getElementById('tables2');
+                tables2.style.display = "block";
+                tables2.innerHTML = "<h2>...</h2>";
                 document.getElementById("wr").innerText = ""
                 document.getElementById("rank").innerText = ""
                 document.getElementById("championTier").innerText = ""
 
-                var xhr = new XMLHttpRequest();
-
-                var enemy_top = document.getElementById("enemy_top").value;
-                var enemy_jungle = document.getElementById("enemy_jungle").value;
-                var enemy_middle = document.getElementById("enemy_middle").value;
-                var enemy_bottom = document.getElementById("enemy_bottom").value;
-                var enemy_support = document.getElementById("enemy_support").value;
-                var team_top = document.getElementById("team_top").value;
-                var team_jungle = document.getElementById("team_jungle").value;
-                var team_middle = document.getElementById("team_middle").value;
-                var team_bottom = document.getElementById("team_bottom").value;
-                var team_support = document.getElementById("team_support").value;
-                var patch = document.getElementById("patch").value;
-                var params = `enemy_top=${enemy_top}&enemy_jungle=${enemy_jungle}&enemy_middle=${enemy_middle}&enemy_bottom=${enemy_bottom}&enemy_support=${enemy_support}&team_top=${team_top}&team_jungle=${team_jungle}&team_middle=${team_middle}&team_bottom=${team_bottom}&team_support=${team_support}&patch=${patch}`
-                var tier = document.getElementById("tier").value;
-                var region = document.getElementById("region").value;
-                params = params + `&tier=${tier}&region=${region}`
-                const itemParams = new URLSearchParams();
-                items.forEach(item => {
-                    Object.entries(item).forEach(([key, value]) => {
-                        itemParams.append(key, value);
-                    });
+                const list1 = document.querySelector('#list');
+                var items1 = Array.from(list.querySelectorAll("li")).map(function (li) {
+                    return {
+                        lane: li.querySelector(".lane").value,
+                        champion: li.querySelector(".champion").value
+                    };
                 });
 
-                params = params + `&${itemParams.toString()}`;
-                xhr.open('GET', `champion_pool_analyze?${params}`);
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                var xhr = new XMLHttpRequest();
+                var data = {
+                    enemy_top: document.getElementById("enemy_top").value,
+                    enemy_jungle: document.getElementById("enemy_jungle").value,
+                    enemy_middle: document.getElementById("enemy_middle").value,
+                    enemy_bottom: document.getElementById("enemy_bottom").value,
+                    enemy_support: document.getElementById("enemy_support").value,
+                    team_top: document.getElementById("team_top").value,
+                    team_jungle: document.getElementById("team_jungle").value,
+                    team_middle: document.getElementById("team_middle").value,
+                    team_bottom: document.getElementById("team_bottom").value,
+                    team_support: document.getElementById("team_support").value,
+                    patch: document.getElementById("patch").value,
+                    tier: document.getElementById("tier").value,
+                    region: document.getElementById("region").value,
+                    champion_pool: items1
+                };
+                xhr.open("POST", "champion_pool_analyze");
+                xhr.setRequestHeader("Content-type", "application/json");
                 xhr.onreadystatechange = function () {
                     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                        refresh_result(this.responseText);
+                        refresh_result_champion_pool(this.responseText);
                     } else {
-                        refresh_result(this.status + "<br>" + this.responseText);
+                        refresh_result_champion_pool(this.status + "<br>" + this.responseText);
                     }
                 }
-                tables.innerHTML = "数据加载中。。。";
+                tables2.innerHTML = "数据加载中。。。";
 
 
 
-                xhr.send();
+                xhr.send(JSON.stringify(data));
 
             }
+
+            function refresh_result_champion_pool(response) {
+            document.getElementById("tables2").innerHTML = response
+        }
         </script>
         <p>
             <button id="run" onclick="refresh(1)">分析</button>
@@ -238,10 +242,12 @@
         <br>
         <div id="championTier"> </div>
         <br>
-        <div id="tables" style="margin:0;width:800px;text-align:left;">
+        <div id="tables1" style="margin:0;width:800px;text-align:left;">
 
         </div>
+        <div id="tables2" style="margin:0;width:800px;text-align:left;">
 
+        </div>
     </div>
     <h2> Q&A</h2>
     <div>
