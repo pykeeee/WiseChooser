@@ -119,6 +119,18 @@
         <input id="team_support" list="champions">
 
         <br>
+        <p>
+            <button id="run" onclick="refresh(1)">分析</button>
+            <br>
+        <div id="wr"> </div>
+        <br>
+        <div id="rank"> </div>
+        <br>
+        <div id="championTier"> </div>
+        <br>
+        <div id="tables1" style="margin:0;width:800px;text-align:left;">
+        </div>
+        <br>
         <h1>你的英雄池</h1>
         <ul id="list">
             <li>
@@ -183,9 +195,6 @@
                 var tables2 = document.getElementById('tables2');
                 tables2.style.display = "block";
                 tables2.innerHTML = "<h2>...</h2>";
-                document.getElementById("wr").innerText = ""
-                document.getElementById("rank").innerText = ""
-                document.getElementById("championTier").innerText = ""
 
                 const list1 = document.querySelector('#list');
                 var items1 = Array.from(list.querySelectorAll("li")).map(function (li) {
@@ -233,18 +242,9 @@
             document.getElementById("tables2").innerHTML = response
         }
         </script>
-        <p>
-            <button id="run" onclick="refresh(1)">分析</button>
-            <br>
-        <div id="wr"> </div>
-        <br>
-        <div id="rank"> </div>
-        <br>
-        <div id="championTier"> </div>
-        <br>
-        <div id="tables1" style="margin:0;width:800px;text-align:left;">
+        
 
-        </div>
+        
         <div id="tables2" style="margin:0;width:800px;text-align:left;">
 
         </div>
