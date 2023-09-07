@@ -5,7 +5,6 @@
     <script type="text/javascript">
         function setBaseValue() {
             document.getElementById('patch').value = "13.17"
-            document.getElementById('region').value = "all"
         }
 
         function refresh_result(response) {
@@ -78,46 +77,95 @@
 
     <div>
         <label for="patch">版本号</label>
-        <input id='patch' list="patches" />
+        <select id="patch">
+            <option value="13.17">13.17</option>
+            <option value="13.16">13.16</option>
+            <option value="13.15">13.15</option>
+            <option value="13.14">13.14</option>
+            <option value="13.13">13.13</option>
+        </select>
         <label for="tier">段位</label>
-        <input id="tier" list="tiers">
+        <select id="tier">
+            <option value="all">所有</option>
+            <option value="challenger">最强王者</option>
+            <option value="grandmaster">傲世宗师</option>
+            <option value="master_plus">超凡大师+</option>
+            <option value="master">超凡大师</option>
+            <option value="diamond_plus">钻石+</option>
+            <option value="d2_plus">钻石2+</option>
+            <option value="diamond">钻石</option>
+            <option value="emerald_plus">翡翠+</option>
+            <option value="emerald">翡翠</option>
+            <option value="platinum_plus">铂金+</option>
+            <option value="platinum">铂金</option>
+            <option value="gold_plus">黄金+</option>
+            <option value="gold">黄金</option>
+            <option value="silver">白银</option>
+            <option value="bronze">青铜</option>
+            <option value="iron">黑铁</option>
+            <option value="unranked">无段位</option>
+        </select>
         <label for="region">区域</label>
-        <input id="region" list="regions">
+        <select id="region">
+            <option value="all">ALL</option>
+            <option value="br">BRAZIL</option>
+            <option value="eune">EUROPE_NORTH_EAST</option>
+            <option value="euw">EUROPE_WEST</option>
+            <option value="jp">JAPAN</option>
+            <option value="kr">KOREA</option>
+            <option value="lan">LATIN_AMERICA_NORTH</option>
+            <option value="las">LATIN_AMERICA_SOUTH</option>
+            <option value="na">NORTH_AMERICA</option>
+            <option value="oce">OCEANIA</option>
+            <option value="ph">PHILIPPINES</option>
+            <option value="ru">RUSSIA</option>
+            <option value="sg">SINGAPORE</option>
+            <option value="th">THAILAND</option>
+            <option value="tr">TURKEY</option>
+            <option value="tw">TAIWAN</option>
+            <option value="vn">VIETNAM</option>
+        </select>
         
         <br>
-        <label for="enemy_top">enemy_top</label>
+        <label for="enemy_top">敌方上单</label>
         <input id="enemy_top" list="champions">
         <br>
-        <label for="enemy_jungle">enemy_jungle</label>
+        <label for="enemy_jungle">敌方打野</label>
         <input id="enemy_jungle" list="champions">
         <br>
-        <label for="enemy_middle">enemy_middle</label>
+        <label for="enemy_middle">敌方中单</label>
         <input id="enemy_middle" list="champions">
         <br>
-        <label for="enemy_bottom">enemy_bottom</label>
+        <label for="enemy_bottom">敌方adc</label>
         <input id="enemy_bottom" list="champions">
         <br>
-        <label for="enemy_support">enemy_support</label>
+        <label for="enemy_support">敌方辅助</label>
         <input id="enemy_support" list="champions">
         <br>
-        <label for="team_top">team_top</label>
+        <label for="team_top">己方上单</label>
         <input id="team_top" list="champions">
         <br>
-        <label for="team_jungle">team_jungle</label>
+        <label for="team_jungle">己方打野</label>
         <input id="team_jungle" list="champions">
         <br>
-        <label for="team_middle">team_middle</label>
+        <label for="team_middle">己方中单</label>
         <input id="team_middle" list="champions">
         <br>
-        <label for="team_bottom">team_bottom</label>
+        <label for="team_bottom">己方adc</label>
         <input id="team_bottom" list="champions">
         <br>
-        <label for="team_support">team_support</label>
+        <label for="team_support">己方辅助</label>
         <input id="team_support" list="champions">
 
         <br>
         <label for="lane">所选位置</label>
-        <input id="lane" list="lanes">
+        <select id="lane">
+            <option value="top">上单</option>
+            <option value="jungle">打野</option>
+            <option value="middle">中单</option>
+            <option value="bottom">adc</option>
+            <option value="support">辅助</option>
+        </select>
         <label for="champion">所选英雄</label>
         <input id="champion" list="champions">
         <p>
@@ -135,7 +183,13 @@
         <h1>你的英雄池</h1>
         <ul id="list">
             <li>
-                <input class="lane" type="text" placeholder="位置" list="lanes">
+                <select class="lane">
+                    <option value="top">上单</option>
+                    <option value="jungle">打野</option>
+                    <option value="middle">中单</option>
+                    <option value="bottom">adc</option>
+                    <option value="support">辅助</option>
+                </select>
                 <input class="champion" type="text" placeholder="英雄" list="champions">
                 <button onclick="addItem(this)">+</button>
                 <button onclick="removeItem(this)">-</button>
