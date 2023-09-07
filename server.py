@@ -44,6 +44,8 @@ def do_analyze_data():
     team_middle = params.get('team_middle', None)
     team_bottom = params.get('team_bottom', None)
     team_support = params.get('team_support', None)
+    if not enemy_top and not enemy_jungle and not enemy_middle and not enemy_bottom and not enemy_support and not team_top and not team_jungle and not team_middle and not team_bottom and not team_support:
+        return {'html': "<h3 style='color:#DC143C'>请在上方输入框选择一个或多个敌方(友方)英雄再分析本局胜率</h3>"}
     enemy_chosen_dic = {'top': enemy_top, 'jungle': enemy_jungle, 'middle': enemy_middle, 'bottom': enemy_bottom,
                         'support': enemy_support}
     team_chosen_dic = {'top': team_top, 'jungle': team_jungle, 'middle': team_middle, 'bottom': team_bottom,
@@ -77,6 +79,8 @@ def champion_pool_analyze():
     team_middle = params.get('team_middle', None)
     team_bottom = params.get('team_bottom', None)
     team_support = params.get('team_support', None)
+    if not enemy_top and not enemy_jungle and not enemy_middle and not enemy_bottom and not enemy_support and not team_top and not team_jungle and not team_middle and not team_bottom and not team_support:
+        return "<h3 style='color:#DC143C'>请在上方输入框选择一个或多个敌方(友方)英雄再分析英雄池</h3>"
     enemy_chosen_dic = {'top': enemy_top, 'jungle': enemy_jungle, 'middle': enemy_middle, 'bottom': enemy_bottom,
                         'support': enemy_support}
     team_chosen_dic = {'top': team_top, 'jungle': team_jungle, 'middle': team_middle, 'bottom': team_bottom,
@@ -88,7 +92,7 @@ def champion_pool_analyze():
         for item in champion_pool:
             item['champion']=constant.champions_cid_dic[item.get('champion')]
     except BaseException as e:
-        rt = {'html': '所选英雄错误，请正确输入您想选的英雄（从下拉框选择） \n '+str(e)}
+        rt = '所选英雄错误，请正确输入您想选的英雄（从下拉框选择） \n '+str(e)
         print(rt)
         return rt
     tier = params['tier']
