@@ -72,132 +72,204 @@
 </head>
 
 <body>
-    <h1> 欢迎使用WiseChooser</h1>
-    <h3> 如果您有任何疑问或者建议，或想参与本网站开发，请加qq群674484536</h3>
+    <style>
+        .container {
+            border: #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            /* 这里的100vh可以改成其他数值，表示容器的高度 */
+        }
 
-    <div>
-        <label for="patch">版本号</label>
-        <select id="patch">
-            <option value="13.17">13.17</option>
-            <option value="13.16">13.16</option>
-            <option value="13.15">13.15</option>
-            <option value="13.14">13.14</option>
-            <option value="13.13">13.13</option>
-        </select>
-        <label for="tier">段位</label>
-        <select id="tier">
-            <option value="all">所有</option>
-            <option value="challenger">最强王者</option>
-            <option value="grandmaster">傲世宗师</option>
-            <option value="master_plus">超凡大师+</option>
-            <option value="master">超凡大师</option>
-            <option value="diamond_plus">钻石+</option>
-            <option value="d2_plus">钻石2+</option>
-            <option value="diamond">钻石</option>
-            <option value="emerald_plus">翡翠+</option>
-            <option value="emerald">翡翠</option>
-            <option value="platinum_plus">铂金+</option>
-            <option value="platinum">铂金</option>
-            <option value="gold_plus">黄金+</option>
-            <option value="gold">黄金</option>
-            <option value="silver">白银</option>
-            <option value="bronze">青铜</option>
-            <option value="iron">黑铁</option>
-            <option value="unranked">无段位</option>
-        </select>
-        <label for="region">区域</label>
-        <select id="region">
-            <option value="all">ALL</option>
-            <option value="br">BRAZIL</option>
-            <option value="eune">EUROPE_NORTH_EAST</option>
-            <option value="euw">EUROPE_WEST</option>
-            <option value="jp">JAPAN</option>
-            <option value="kr">KOREA</option>
-            <option value="lan">LATIN_AMERICA_NORTH</option>
-            <option value="las">LATIN_AMERICA_SOUTH</option>
-            <option value="na">NORTH_AMERICA</option>
-            <option value="oce">OCEANIA</option>
-            <option value="ph">PHILIPPINES</option>
-            <option value="ru">RUSSIA</option>
-            <option value="sg">SINGAPORE</option>
-            <option value="th">THAILAND</option>
-            <option value="tr">TURKEY</option>
-            <option value="tw">TAIWAN</option>
-            <option value="vn">VIETNAM</option>
-        </select>
-        
-        <br>
-        <label for="enemy_top">敌方上单</label>
-        <input id="enemy_top" list="champions">
-        <br>
-        <label for="enemy_jungle">敌方打野</label>
-        <input id="enemy_jungle" list="champions">
-        <br>
-        <label for="enemy_middle">敌方中单</label>
-        <input id="enemy_middle" list="champions">
-        <br>
-        <label for="enemy_bottom">敌方adc</label>
-        <input id="enemy_bottom" list="champions">
-        <br>
-        <label for="enemy_support">敌方辅助</label>
-        <input id="enemy_support" list="champions">
-        <br>
-        <label for="team_top">己方上单</label>
-        <input id="team_top" list="champions">
-        <br>
-        <label for="team_jungle">己方打野</label>
-        <input id="team_jungle" list="champions">
-        <br>
-        <label for="team_middle">己方中单</label>
-        <input id="team_middle" list="champions">
-        <br>
-        <label for="team_bottom">己方adc</label>
-        <input id="team_bottom" list="champions">
-        <br>
-        <label for="team_support">己方辅助</label>
-        <input id="team_support" list="champions">
+        .block1 {
+            text-align: center;
+            width: 1400px;
+            /* 这里的100px可以根据需要调整，表示第一块的高度 */
+        }
 
-        <br>
-        <label for="lane">所选位置</label>
-        <select id="lane">
-            <option value="top">上单</option>
-            <option value="jungle">打野</option>
-            <option value="middle">中单</option>
-            <option value="bottom">adc</option>
-            <option value="support">辅助</option>
-        </select>
-        <label for="champion">所选英雄</label>
-        <input id="champion" list="champions">
-        <p>
-            <button id="run" onclick="refresh(1)">分析</button>
+        .block2 {
+            float: left;
+            width: 50%;
+            /* 这里的50%表示第二块的宽度为容器宽度的一半 */
+        }
+
+        .block3 {
+            float: right;
+            width: 50%;
+            /* 这里的50%表示第三块的宽度为容器宽度的一半 */
+        }
+
+        .block4 {
+            height: 100px;
+            /* 这里的100px可以根据需要调整，表示第四块的高度 */
+        }
+    </style>
+
+    <div class="container">
+        <div class="block1">
+            <h1> 欢迎使用WiseChooser</h1>
+            <h3> 用法：输入本局其他英雄，分析您的英雄和英雄池在本局的表现</h3>
+
+            <label for="patch">版本号</label>
+            <select id="patch">
+                <option value="13.17">13.17</option>
+                <option value="13.16">13.16</option>
+                <option value="13.15">13.15</option>
+                <option value="13.14">13.14</option>
+                <option value="13.13">13.13</option>
+            </select>
+            <label for="tier">段位</label>
+            <select id="tier">
+                <option value="all">所有</option>
+                <option value="challenger">最强王者</option>
+                <option value="grandmaster">傲世宗师</option>
+                <option value="master_plus">超凡大师+</option>
+                <option value="master">超凡大师</option>
+                <option value="diamond_plus">钻石+</option>
+                <option value="d2_plus">钻石2+</option>
+                <option value="diamond">钻石</option>
+                <option value="emerald_plus">翡翠+</option>
+                <option value="emerald">翡翠</option>
+                <option value="platinum_plus">铂金+</option>
+                <option value="platinum">铂金</option>
+                <option value="gold_plus">黄金+</option>
+                <option value="gold">黄金</option>
+                <option value="silver">白银</option>
+                <option value="bronze">青铜</option>
+                <option value="iron">黑铁</option>
+                <option value="unranked">无段位</option>
+            </select>
+            <label for="region">区域</label>
+            <select id="region">
+                <option value="all">ALL</option>
+                <option value="br">BRAZIL</option>
+                <option value="eune">EUROPE_NORTH_EAST</option>
+                <option value="euw">EUROPE_WEST</option>
+                <option value="jp">JAPAN</option>
+                <option value="kr">KOREA</option>
+                <option value="lan">LATIN_AMERICA_NORTH</option>
+                <option value="las">LATIN_AMERICA_SOUTH</option>
+                <option value="na">NORTH_AMERICA</option>
+                <option value="oce">OCEANIA</option>
+                <option value="ph">PHILIPPINES</option>
+                <option value="ru">RUSSIA</option>
+                <option value="sg">SINGAPORE</option>
+                <option value="th">THAILAND</option>
+                <option value="tr">TURKEY</option>
+                <option value="tw">TAIWAN</option>
+                <option value="vn">VIETNAM</option>
+            </select>
+
             <br>
-        <div id="wr"> </div>
-        <br>
-        <div id="rank"> </div>
-        <br>
-        <div id="championTier"> </div>
-        <br>
-        <div id="tables1" style="margin:0;width:800px;text-align:left;">
+            <label for="enemy_top">敌方上单</label>
+            <input id="enemy_top" list="champions">
+            <label for="team_top">己方上单</label>
+            <input id="team_top" list="champions">
+            <br>
+            <label for="enemy_jungle">敌方打野</label>
+            <input id="enemy_jungle" list="champions">
+            <label for="team_jungle">己方打野</label>
+            <input id="team_jungle" list="champions">
+            <br>
+            <label for="enemy_middle">敌方中单</label>
+            <input id="enemy_middle" list="champions">
+            <label for="team_middle">己方中单</label>
+            <input id="team_middle" list="champions">
+            <br>
+            <label for="enemy_bottom">敌方adc</label>
+            <input id="enemy_bottom" list="champions">
+            <label for="team_bottom">己方adc</label>
+            <input id="team_bottom" list="champions">
+            <br>
+            <label for="enemy_support">敌方辅助</label>
+            <input id="enemy_support" list="champions">
+            <label for="team_support">己方辅助</label>
+            <input id="team_support" W list="champions">
+            <br>
         </div>
-        <br>
-        <h1>你的英雄池</h1>
-        <ul id="list">
-            <li>
-                <select class="lane">
+        <div class="mid">
+            <div class="block2">
+                <h2>你的本局英雄</h2>
+                <label for="lane">所选位置</label>
+                <select id="lane">
                     <option value="top">上单</option>
                     <option value="jungle">打野</option>
                     <option value="middle">中单</option>
                     <option value="bottom">adc</option>
                     <option value="support">辅助</option>
                 </select>
-                <input class="champion" type="text" placeholder="英雄" list="champions">
-                <button onclick="addItem(this)">+</button>
-                <button onclick="removeItem(this)">-</button>
-            </li>
-            <!-- 在这里添加更多的列表项 -->
-        </ul>
-        <button onclick="addNewItem()">添加英雄</button>
-        <button onclick="champion_pool()">分析英雄池</button>
+                <label for="champion">所选英雄</label>
+                <input id="champion" list="champions">
+                <p>
+                    <button id="run" onclick="refresh(1)">分析</button>
+                    <br>
+                <div id="wr"> </div>
+                <br>
+                <div id="rank"> </div>
+                <br>
+                <div id="championTier"> </div>
+                <br>
+                <div id="tables1" style="margin:0;width:800px;text-align:left;">
+                </div>
+            </div>
+            <div class="block3">
+                <h2>你的英雄池</h2>
+                <ul id="list">
+                    <li>
+                        <select class="lane">
+                            <option value="top">上单</option>
+                            <option value="jungle">打野</option>
+                            <option value="middle">中单</option>
+                            <option value="bottom">adc</option>
+                            <option value="support">辅助</option>
+                        </select>
+                        <input class="champion" type="text" placeholder="英雄" list="champions">
+                        <button onclick="addItem(this)">+</button>
+                        <button onclick="removeItem(this)">-</button>
+                    </li>
+                    <!-- 在这里添加更多的列表项 -->
+                </ul>
+                <button onclick="addNewItem()">添加英雄</button>
+                <button onclick="champion_pool()">分析英雄池</button>
+                <div id="tables2" style="margin:0;width:800px;text-align:left;">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="block4">
+            <h3> 如果您有任何疑问或者建议，或想参与本网站开发，请加qq群674484536</h3>
+            <h2> Q&A</h2>
+            <div>
+                <br>
+                <h3>Q:数据的来源？</h3>
+                <h3>A:本网站数据均从lolalytics.com获取，并没有自己做统计</h3>
+                <h3>Q:为什么选择段位高时，大部分英雄胜率都大于百分之50，而段位低时大部分英雄胜率会低于百分之50？</h3>
+                <h3>A:当一个对局中即出现高段位又出现低段位的时候，高段位更容易获胜</h3>
+                <h3>Q:差值的含义？</h3>
+                <h3>
+                    A:您可以简单地认为，差值越高，您越容易获胜。
+                    <br>
+                    更深入一些，差值是 ‘您所选英雄对战目标英雄的胜率’ 和 ‘您所选英雄自身胜率’ 的差值。
+                    <br>
+                    造成差值大于0的原因不一定所选英雄克制目标英雄，也可能是目标敌方(友方)英雄本身胜率低(高)。
+                    <br>
+                    比如：厄斐琉斯的自身胜率很低，就会导致大部分英雄对战厄斐琉斯的差值将大于0
+                    <br>
+                    如果您还有疑问，欢迎加群查看文档或像我咨询。
+                </h3>
+                <h3>Q:为什么region中没有china</h3>
+                <h3>A:lolalytics.com的region中就没有china，原因不明</h3>
+            </div>
+        </div>
+
+
+
+        <br>
+
+        <br>
+
         <script>
             const list = document.querySelector('#list');
             const items = Array.from(list.querySelectorAll('li'));
@@ -294,45 +366,441 @@
             }
 
             function refresh_result_champion_pool(response) {
-            document.getElementById("tables2").innerHTML = response
-        }
+                document.getElementById("tables2").innerHTML = response
+            }
         </script>
-        
-
-        
-        <div id="tables2" style="margin:0;width:800px;text-align:left;">
-
-        </div>
-    </div>
-    <h2> Q&A</h2>
-    <div>
-        <br>
-        <h3>Q:数据的来源？</h3>
-        <h3>A:本网站数据均从lolalytics.com获取，并没有自己做统计</h3>
-        <h3>Q:为什么选择段位高时，大部分英雄胜率都大于百分之50，而段位低时大部分英雄胜率会低于百分之50？</h3>
-        <h3>A:当一个对局中即出现高段位又出现低段位的时候，高段位更容易获胜</h3>
-        <h3>Q:差值的含义？</h3>
-        <h3>
-            A:您可以简单地认为，差值越高，您越容易获胜。
-            <br>
-            更深入一些，差值是 ‘您所选英雄对战目标英雄的胜率’ 和 ‘您所选英雄自身胜率’ 的差值。
-            <br>
-            造成差值大于0的原因不一定所选英雄克制目标英雄，也可能是目标敌方(友方)英雄本身胜率低(高)。
-            <br>
-            比如：厄斐琉斯的自身胜率很低，就会导致大部分英雄对战厄斐琉斯的差值将大于0
-            <br>
-            如果您还有疑问，欢迎加群查看文档或像我咨询。
-        </h3>
-        <h3>Q:为什么region中没有china</h3>
-        <h3>A:lolalytics.com的region中就没有china，原因不明</h3>
-    </div>
 </body>
 <style>
-    {
-            {
-            stylesheet
-        }
+    table {
+        table-layout: fixed;
+        word-wrap: break-word;
+        border-collapse: collapse;
+        text-align: left;
     }
+
+    table td {
+
+        color: #666;
+        padding: 5px;
+        font-size: 10pt;
+    }
+
+    table th {
+        white-space: nowrap;
+    }
+
+    table th,
+    table td {
+        border: 1px solid #cad9ea;
+        height: 50px;
+
+        max-width: 1800px;
+        min-width: 30px;
+    }
+
+    table tr:nth-child(odd) {
+        background: #fff;
+        width: 100px;
+    }
+
+    table tr:nth-child(even) {
+        background: #F5FAFA;
+    }
+
+    pre {
+        line-height: 120%;
+    }
+
+    td.linenos .normal {
+        color: inherit;
+        background-color: transparent;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    span.linenos {
+        color: inherit;
+        background-color: transparent;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    td.linenos .special {
+        color: #000000;
+        background-color: #ffffc0;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    span.linenos.special {
+        color: #000000;
+        background-color: #ffffc0;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .hll {
+        background-color: #ffffcc
+    }
+
+    .c {
+        color: #408080;
+        font-style: italic
+    }
+
+    /* Comment */
+    .err {
+        border: 1px solid #FF0000
+    }
+
+    /* Error */
+    .k {
+        color: #008000;
+        font-weight: bold
+    }
+
+    /* Keyword */
+    .o {
+        color: #666666
+    }
+
+    /* Operator */
+    .ch {
+        color: #408080;
+        font-style: italic
+    }
+
+    /* Comment.Hashbang */
+    .cm {
+        color: #408080;
+        font-style: italic
+    }
+
+    /* Comment.Multiline */
+    .cp {
+        color: #BC7A00
+    }
+
+    /* Comment.Preproc */
+    .cpf {
+        color: #408080;
+        font-style: italic
+    }
+
+    /* Comment.PreprocFile */
+    .c1 {
+        color: #408080;
+        font-style: italic
+    }
+
+    /* Comment.Single */
+    .cs {
+        color: #408080;
+        font-style: italic
+    }
+
+    /* Comment.Special */
+    .gd {
+        color: #A00000
+    }
+
+    /* Generic.Deleted */
+    .ge {
+        font-style: italic
+    }
+
+    /* Generic.Emph */
+    .gr {
+        color: #FF0000
+    }
+
+    /* Generic.Error */
+    .gh {
+        color: #000080;
+        font-weight: bold
+    }
+
+    /* Generic.Heading */
+    .gi {
+        color: #00A000
+    }
+
+    /* Generic.Inserted */
+    .go {
+        color: #888888
+    }
+
+    /* Generic.Output */
+    .gp {
+        color: #000080;
+        font-weight: bold
+    }
+
+    /* Generic.Prompt */
+    .gs {
+        font-weight: bold
+    }
+
+    /* Generic.Strong */
+    .gu {
+        color: #800080;
+        font-weight: bold
+    }
+
+    /* Generic.Subheading */
+    .gt {
+        color: #0044DD
+    }
+
+    /* Generic.Traceback */
+    .kc {
+        color: #008000;
+        font-weight: bold
+    }
+
+    /* Keyword.Constant */
+    .kd {
+        color: #008000;
+        font-weight: bold
+    }
+
+    /* Keyword.Declaration */
+    .kn {
+        color: #008000;
+        font-weight: bold
+    }
+
+    /* Keyword.Namespace */
+    .kp {
+        color: #008000
+    }
+
+    /* Keyword.Pseudo */
+    .kr {
+        color: #008000;
+        font-weight: bold
+    }
+
+    /* Keyword.Reserved */
+    .kt {
+        color: #B00040
+    }
+
+    /* Keyword.Type */
+    .m {
+        color: #666666
+    }
+
+    /* Literal.Number */
+    .s {
+        color: #BA2121
+    }
+
+    /* Literal.String */
+    .na {
+        color: #7D9029
+    }
+
+    /* Name.Attribute */
+    .nb {
+        color: #008000
+    }
+
+    /* Name.Builtin */
+    .nc {
+        color: #0000FF;
+        font-weight: bold
+    }
+
+    /* Name.Class */
+    .no {
+        color: #880000
+    }
+
+    /* Name.Constant */
+    .nd {
+        color: #AA22FF
+    }
+
+    /* Name.Decorator */
+    .ni {
+        color: #999999;
+        font-weight: bold
+    }
+
+    /* Name.Entity */
+    .ne {
+        color: #D2413A;
+        font-weight: bold
+    }
+
+    /* Name.Exception */
+    .nf {
+        color: #0000FF
+    }
+
+    /* Name.Function */
+    .nl {
+        color: #A0A000
+    }
+
+    /* Name.Label */
+    .nn {
+        color: #0000FF;
+        font-weight: bold
+    }
+
+    /* Name.Namespace */
+    .nt {
+        color: #008000;
+        font-weight: bold
+    }
+
+    /* Name.Tag */
+    .nv {
+        color: #19177C
+    }
+
+    /* Name.Variable */
+    .ow {
+        color: #AA22FF;
+        font-weight: bold
+    }
+
+    /* Operator.Word */
+    .w {
+        color: #bbbbbb
+    }
+
+    /* Text.Whitespace */
+    .mb {
+        color: #666666
+    }
+
+    /* Literal.Number.Bin */
+    .mf {
+        color: #666666
+    }
+
+    /* Literal.Number.Float */
+    .mh {
+        color: #666666
+    }
+
+    /* Literal.Number.Hex */
+    .mi {
+        color: #666666
+    }
+
+    /* Literal.Number.Integer */
+    .mo {
+        color: #666666
+    }
+
+    /* Literal.Number.Oct */
+    .sa {
+        color: #BA2121
+    }
+
+    /* Literal.String.Affix */
+    .sb {
+        color: #BA2121
+    }
+
+    /* Literal.String.Backtick */
+    .sc {
+        color: #BA2121
+    }
+
+    /* Literal.String.Char */
+    .dl {
+        color: #BA2121
+    }
+
+    /* Literal.String.Delimiter */
+    .sd {
+        color: #BA2121;
+        font-style: italic
+    }
+
+    /* Literal.String.Doc */
+    .s2 {
+        color: #BA2121
+    }
+
+    /* Literal.String.Double */
+    .se {
+        color: #BB6622;
+        font-weight: bold
+    }
+
+    /* Literal.String.Escape */
+    .sh {
+        color: #BA2121
+    }
+
+    /* Literal.String.Heredoc */
+    .si {
+        color: #BB6688;
+        font-weight: bold
+    }
+
+    /* Literal.String.Interpol */
+    .sx {
+        color: #008000
+    }
+
+    /* Literal.String.Other */
+    .sr {
+        color: #BB6688
+    }
+
+    /* Literal.String.Regex */
+    .s1 {
+        color: #BA2121
+    }
+
+    /* Literal.String.Single */
+    .ss {
+        color: #19177C
+    }
+
+    /* Literal.String.Symbol */
+    .bp {
+        color: #008000
+    }
+
+    /* Name.Builtin.Pseudo */
+    .fm {
+        color: #0000FF
+    }
+
+    /* Name.Function.Magic */
+    .vc {
+        color: #19177C
+    }
+
+    /* Name.Variable.Class */
+    .vg {
+        color: #19177C
+    }
+
+    /* Name.Variable.Global */
+    .vi {
+        color: #19177C
+    }
+
+    /* Name.Variable.Instance */
+    .vm {
+        color: #19177C
+    }
+
+    /* Name.Variable.Magic */
+    .il {
+        color: #666666
+    }
+
+    /* Literal.Number.Integer.Long */
 </style>
 
 </html>
